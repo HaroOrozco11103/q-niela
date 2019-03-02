@@ -13,3 +13,4 @@ Control y gestion de información de pronosticos deportivos locales.
 # Autores
 
 - Haro Orozco
+- Lupita Ayala
