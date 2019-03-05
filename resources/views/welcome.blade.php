@@ -90,8 +90,8 @@
                     <a href="https://laravel-news.com">Playa</a>
                     <a href="https://blog.laravel.com">Pa'</a>
                     <a href="https://nova.laravel.com">Curarte</a>
-                    <a href="https://forge.laravel.com">El</a>
-                    <a href="https://github.com/laravel/laravel">Alma</a>
+                    <a href="https://forge.laravel.com">El Alma</a>
+                    <a href="{{ route('jornadas.index') }}">Jornadas</a>
                 </div>
             </div>
         </div>

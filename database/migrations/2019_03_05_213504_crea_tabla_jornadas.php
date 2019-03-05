@@ -16,7 +16,7 @@ class CreaTablaJornadas extends Migration
         Schema::create('jornadas', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-
+            $table->string('nombre');
             //$table->foreign('user_id')->references('id')->on('users');
         });
     }

@@ -11,9 +11,12 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function ()
+{
     return view('welcome');
 });
+
+Route::get('/jornadas', 'JornadaController@index')->name('jornadas.index');
 
 Route::get('/informacion', 'PaginasController@info');
 
