@@ -5,7 +5,7 @@
       <div class="col-8">
         <h1>Jornadas</h1>
         <table class="table table-hover">
-          <caption>Jornadas MX</caption>
+          <caption>Jornadas de {{ session('apodo') }}</caption>
           <thead class="thead-dark">
             <tr>
               <th scope="col">ID</th>
