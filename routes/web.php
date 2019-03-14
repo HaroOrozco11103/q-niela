@@ -16,6 +16,11 @@ Route::get('/', function ()
     return view('welcome');
 });
 
+Route::get('/inicio', function ()
+{
+    return view('inicio');
+});
+
 Route::get('/jornadas', 'JornadaController@index')->name('jornadas.index');
 
 Route::get('/informacion', 'PaginasController@info');
