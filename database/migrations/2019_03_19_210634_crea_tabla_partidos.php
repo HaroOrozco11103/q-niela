@@ -19,9 +19,9 @@ class CreaTablaPartidos extends Migration
             $table->foreign('jornada_numero')->references('numero')->on('jornadas');
             //->onDelete('cascade');
             $table->string('equipo_local');
-            $table->foreign('equipo_local')->references('nombre')->on('equipos');
+            //$table->foreign('equipo_local')->references('nombre')->on('equipos');
             $table->string('equipo_visitante');
-            $table->foreign('equipo_visitante')->references('nombre')->on('equipos');
+            //$table->foreign('equipo_visitante')->references('nombre')->on('equipos');
             $table->string('resultado');
         });
     }
