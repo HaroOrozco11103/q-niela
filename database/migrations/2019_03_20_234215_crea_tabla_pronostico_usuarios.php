@@ -16,7 +16,7 @@ class CreaTablaPronosticoUsuarios extends Migration
         Schema::create('pronosticoUsuarios', function (Blueprint $table) {
             $table->string('user_username');
             $table->foreign('user_username')->references('username')->on('users');
-            $table->integer('pronostico_id');
+            $table->unsignedInteger('pronostico_id');
             $table->foreign('pronostico_id')->references('id')->on('pronosticos');
             $table->string('apodo');
         });

@@ -14,9 +14,9 @@ class CreaTablaPronosticoPartidos extends Migration
     public function up()
     {
         Schema::create('pronosticoPartidos', function (Blueprint $table) {
-            $table->integer('pronostico_id');
+            $table->unsignedInteger('pronostico_id');
             $table->foreign('pronostico_id')->references('id')->on('pronosticos');
-            $table->integer('partido_id');
+            $table->unsignedInteger('partido_id');
             $table->foreign('partido_id')->references('id')->on('partidos');
             $table->string('prediccion');
         });

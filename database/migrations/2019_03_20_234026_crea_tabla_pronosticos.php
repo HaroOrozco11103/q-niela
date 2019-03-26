@@ -14,7 +14,7 @@ class CreaTablaPronosticos extends Migration
     public function up()
     {
         Schema::create('pronosticos', function (Blueprint $table) {
-            $table->integer('id')->unique();
+            $table->increments('id');
             $table->string('user_username')->nullable();
             $table->foreign('user_username')->references('username')->on('users');
             $table->integer('jornada_numero')->unique();
