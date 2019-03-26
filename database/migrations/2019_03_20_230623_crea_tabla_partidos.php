@@ -14,7 +14,7 @@ class CreaTablaPartidos extends Migration
     public function up()
     {
         Schema::create('partidos', function (Blueprint $table) {
-            $table->increments('id');
+            $table->integer('id')->unique();
             $table->integer('jornada_numero');
             $table->foreign('jornada_numero')->references('numero')->on('jornadas');
             //->onDelete('cascade');

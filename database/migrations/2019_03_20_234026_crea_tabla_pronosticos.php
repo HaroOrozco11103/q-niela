@@ -14,10 +14,10 @@ class CreaTablaPronosticos extends Migration
     public function up()
     {
         Schema::create('pronosticos', function (Blueprint $table) {
-            $table->increments('id');
+            $table->integer('id')->unique();
             $table->string('user_username')->nullable();
             $table->foreign('user_username')->references('username')->on('users');
-            $table->integer('jornada_numero');
+            $table->integer('jornada_numero')->unique();
             $table->foreign('jornada_numero')->references('numero')->on('jornadas');
             $table->integer('totalAciertos');
         });
