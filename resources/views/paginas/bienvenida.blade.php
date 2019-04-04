@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.home-layout')
 
 @section('content')
     <h1>Bienvenida</h1>

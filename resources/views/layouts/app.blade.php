@@ -9,6 +9,8 @@
 
     <title>{{ config('app.name', 'Q-niela') }}</title>
 
+    <link href="{{ asset('argon/assets/img/brand/favicon.png') }}" rel="icon" type="image/png">
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 

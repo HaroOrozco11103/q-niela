@@ -21,7 +21,15 @@ Route::get('/inicio', function ()
     return view('inicio');
 });
 
-Route::get('/jornadas', 'JornadaController@index')->name('jornadas.index');
+Route::get('/perfil', 'PerfilController@index')->name('perfilindex');
+
+Route::get('/equipo', 'EquipoController@index')->name('equipoindex');
+
+Route::get('/jornadas', 'JornadaController@index')->name('jornadasindex');
+
+Route::get('/pronosticos', 'PronosticosController@index')->name('pronosticosindex');
+
+Route::get('/resultados', 'ResultadosController@index')->name('resultadosindex');
 
 Route::get('/informacion', 'PaginasController@info');
 

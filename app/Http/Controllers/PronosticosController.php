@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 //use Illuminate\Support\Facades\DB;
-use App\Jornada;
+use App\Pronosticos;
 use Illuminate\Http\Request;
 
-class JornadaController extends Controller
+class PronosticosController extends Controller
 {
     public function index()
     {
-      $qniela = Jornada::all();
+      $qniela = Pronoticos::all();
       //$qniela = Jornada::where('id', '>', '1')->get();
 
       //$qniela = DB::table('jornadas')->get();
       //dd($qniela);
       //return $qniela;
-      return view('jornadasindex', compact('qniela'));
+      return view('pronosticosindex', compact('qniela'));
     }
 }
