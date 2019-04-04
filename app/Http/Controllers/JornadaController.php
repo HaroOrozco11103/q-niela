@@ -16,6 +16,6 @@ class JornadaController extends Controller
       //$qniela = DB::table('jornadas')->get();
       //dd($qniela);
       //return $qniela;
-      return view('jornadasindex', compact('qniela'));
+      return view('jornadas.jornadaIndex', compact('qniela'));
     }
 }

@@ -41,7 +41,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ asset('jornadasindex') }}">
+          <a class="nav-link" href="{{ route('jornadas.index') }}">
             <i class="ni ni-tv-2 text-orange"></i> Jornadas
           </a>
         </li>

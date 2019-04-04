@@ -21,15 +21,15 @@ Route::get('/inicio', function ()
     return view('inicio');
 });
 
-Route::get('/perfil', 'PerfilController@index')->name('perfilindex');
+//Route::get('/perfil', 'PerfilController@index')->name('perfilindex');
 
-Route::get('/equipo', 'EquipoController@index')->name('equipoindex');
+//Route::get('/equipo', 'EquipoController@index')->name('equipoindex');
 
-Route::get('/jornadas', 'JornadaController@index')->name('jornadasindex');
+//Route::get('/pronosticos', 'PronosticosController@index')->name('pronosticosindex');
 
-Route::get('/pronosticos', 'PronosticosController@index')->name('pronosticosindex');
+//Route::get('/resultados', 'ResultadosController@index')->name('resultadosindex');
 
-Route::get('/resultados', 'ResultadosController@index')->name('resultadosindex');
+Route::get('/jornadas', 'JornadaController@index')->name('jornadas.index');
 
 Route::get('/informacion', 'PaginasController@info');
 
@@ -37,7 +37,7 @@ Route::get('/contacto', 'PaginasController@contacto');
 
 Route::get('/bienvenida/{nombre}/{apellido?}', 'PaginasController@bienvenida');
 
-Route::get('/miembros', 'PaginasController@equipo')->name('equipo');
+Route::get('/miembros', 'PaginasController@miembros')->name('miembros');
 
 Auth::routes();
 

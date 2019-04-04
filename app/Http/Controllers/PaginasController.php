@@ -24,8 +24,8 @@ class PaginasController extends Controller
       ]);
     }
 
-    public function equipo()
+    public function miembros()
     {
-      return view('paginas/equipo');
+      return view('paginas/miembros');
     }
 }

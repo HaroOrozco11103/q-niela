@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreaTablaPronosticoUsuarios extends Migration
+class CreaTablaPartidoPronostico extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreaTablaPronosticoUsuarios extends Migration
      */
     public function up()
     {
-        Schema::create('pronosticoUsuarios', function (Blueprint $table) {
-            $table->string('user_username');
-            $table->foreign('user_username')->references('username')->on('users');
+        Schema::create('partido_pronostico', function (Blueprint $table) {
             $table->unsignedInteger('pronostico_id');
             $table->foreign('pronostico_id')->references('id')->on('pronosticos');
-            $table->string('apodo');
+            $table->unsignedInteger('partido_id');
+            $table->foreign('partido_id')->references('id')->on('partidos');
+            $table->string('prediccion');
         });
     }
 
@@ -29,6 +29,6 @@ class CreaTablaPronosticoUsuarios extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pronosticoUsuarios');
+        Schema::dropIfExists('partido_pronostico');
     }
 }

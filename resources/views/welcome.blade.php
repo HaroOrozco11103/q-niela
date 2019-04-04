@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{ route('jornadasindex') }}">Jornadas</a>
+                    <a href="{{ route('jornadas.index') }}">Jornadas</a>
                 </div>
             </div>
         </div>
