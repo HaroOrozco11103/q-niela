@@ -6,6 +6,9 @@
 
         <title>Q-niela</title>
 
+        <!-- Favicon -->
+        <link href="{{ asset('argon/assets/img/brand/favicon.png') }}" rel="icon" type="image/png">
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
@@ -70,10 +73,10 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">Iniciar Sesión</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">Crear Cuenta</a>
                         @endif
                     @endauth
                 </div>
@@ -85,13 +88,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Vamos</a>
-                    <a href="https://laracasts.com">A la</a>
-                    <a href="https://laravel-news.com">Playa</a>
-                    <a href="https://blog.laravel.com">Pa'</a>
-                    <a href="https://nova.laravel.com">Curarte</a>
-                    <a href="https://forge.laravel.com">El Alma</a>
-                    <a href="{{ route('jornadas.index') }}">Jornadas</a>
+                    <a href="{{ route('jornadasindex') }}">Jornadas</a>
                 </div>
             </div>
         </div>
