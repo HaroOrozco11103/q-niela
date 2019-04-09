@@ -21,7 +21,7 @@ Route::get('/inicio', function ()
     return view('inicio');
 });
 
-//Route::get('/perfil', 'PerfilController@index')->name('perfilindex');
+Route::get('/perfil', 'PerfilController@index')->name('perfilindex')->middleware('auth');   //Vreificación de login (retorna a la pagina de log)
 
 //Route::get('/equipo', 'EquipoController@index')->name('equipoindex');
 

@@ -6,6 +6,7 @@
         <h1>Jornadas</h1>
         <table class="table table-hover">
           <caption>Jornadas de {{ session('apodo') }}</caption>
+          <caption>Jornadas de {{ Auth::user()->nombre }}</caption>
           <thead class="thead-dark">
             <tr>
               <th scope="col">ID</th>
