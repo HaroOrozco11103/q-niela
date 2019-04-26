@@ -70,7 +70,7 @@ class JornadaController extends Controller
      */
     public function show(Jornada $jornada)
     {
-        //
+        return view('jornadas.jornadaShow', compact('jornada'));
     }
 
     /**
@@ -81,7 +81,7 @@ class JornadaController extends Controller
      */
     public function edit(Jornada $jornada)
     {
-        //
+        return view('jornadas.jornadaForm', compact('jornada'));
     }
 
     /**
@@ -93,7 +93,11 @@ class JornadaController extends Controller
      */
     public function update(Request $request, Jornada $jornada)
     {
-        //
+        $jornada->numero = $request->numero;
+        $jornada->inicio = \Carbon\Carbon::createFromFormat('Y-m-d', $request->input('inicio'))->toDateString();
+        $jornada->fin = \Carbon\Carbon::createFromFormat('Y-m-d', $request->input('fin'))->toDateString();
+        $jornada->save();
+        return redirect()->route('jornadas.show', $jornada->id);
     }
 
     /**
@@ -104,6 +108,7 @@ class JornadaController extends Controller
      */
     public function destroy(Jornada $jornada)
     {
-        //
+        $jornada->delete();
+        return redirect()->route('jornadas.index');
     }
 }

@@ -14,7 +14,7 @@ class CreaTablaEquipos extends Migration
     public function up()
     {
         Schema::create('equipos', function (Blueprint $table) {
-            //$table->increments('id');
+            $table->increments('id');
             $table->string('nombre')->unique();
             $table->integer('gana');
             $table->integer('pierde');

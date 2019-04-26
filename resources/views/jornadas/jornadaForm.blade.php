@@ -9,7 +9,7 @@
 
                 <div class="card-body">
                   @if(isset($jornada))
-                    <form method="POST" action="{{ route('jornadas.update', $jornada->numero) }}">
+                    <form method="POST" action="{{ route('jornadas.update', $jornada->id) }}">
                       <input type="hidden" name="_method" value="PATCH">
                   @else
                     <form method="POST" action="{{ route('jornadas.store') }}">

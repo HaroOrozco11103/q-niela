@@ -14,7 +14,7 @@ class CreaTablaJornadas extends Migration
     public function up()
     {
         Schema::create('jornadas', function (Blueprint $table) {
-            //$table->increments('id');
+            $table->increments('id');
             $table->integer('numero')->unique();
             $table->Date('inicio');
             $table->Date('fin');

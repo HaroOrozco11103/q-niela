@@ -31,12 +31,12 @@
       <!-- Navigation -->
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="{{ asset('perfilindex') }}">
+          <a class="nav-link" href="{{ route('users.index') }}">
             <i class="ni ni-single-02 text-yellow"></i> Perfil
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ asset('equipos.index') }}">
+          <a class="nav-link" href="{{ route('equipos.index') }}">
             <i class="ni ni-planet text-blue"></i> Equipos
           </a>
         </li>

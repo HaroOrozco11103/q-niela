@@ -26,8 +26,8 @@ Route::get('/inicio', function ()
 Route::resource('users', 'UserController');
 
 //-------------------------------------------------------EQUIPOS-------------------------------------------------------
-Route::get('/equipo', 'EquipoController@index')->name('equipos.index');
-
+//Route::get('/equipo', 'EquipoController@index')->name('equipos.index');
+Route::resource('equipos', 'EquipoController');
 //-----------------------------------------------------PRONOSTICOS-----------------------------------------------------
 Route::get('/pronosticos', 'PronosticoController@index')->name('pronosticos.index');
 

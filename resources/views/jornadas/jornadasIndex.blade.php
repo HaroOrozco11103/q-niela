@@ -12,7 +12,8 @@
               <tr>
                 <th scope="col">Número de jornada</th>
                 <th scope="col">Fecha en que inicia</th>
-                <th scope="col">Fecha en que termina </th>
+                <th scope="col">Fecha en que termina</th>
+                <th scope="col">Opciones</th>
               </tr>
             </thead>
             <tbody>
@@ -21,6 +22,9 @@
                 <td>{{ $jor->numero }}</td>
                 <td>{{ $jor->inicio }}</td>
                 <td>{{ $jor->fin }}</td>
+                <td>
+                  <a href="{{ route('jornadas.show', $jor->id) }}" class="btn btn-infobtn-sm">Opciones</a>
+                </td>
               </tr>
               @endforeach
             </tbody>
