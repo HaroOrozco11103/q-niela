@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
           $table->string('username')->unique();
           $table->timestamp('email_verified_at')->nullable();
           $table->string('password');
-          $table->string('tipo', 50);
+          $table->string('tipo', 50)->default("comun");
           $table->rememberToken();
           $table->timestamps();       //crea dos campos que registran cuando fue creado y cuando se actualizó
         });

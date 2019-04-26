@@ -36,7 +36,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ asset('equipoindex') }}">
+          <a class="nav-link" href="{{ asset('equipos.index') }}">
             <i class="ni ni-planet text-blue"></i> Equipos
           </a>
         </li>
@@ -46,12 +46,12 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ asset('pronosticosindex')}}">
+          <a class="nav-link" href="{{ asset('pronosticos.index')}}">
             <i class="ni ni-archive-2 text-black"></i>Pronosticos
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ asset('resultadosindex') }}">
+          <a class="nav-link" href="{{ asset('resultados.index') }}">
             <i class="ni ni-bullet-list-67 text-green"></i> Resultados
           </a>
         </li>

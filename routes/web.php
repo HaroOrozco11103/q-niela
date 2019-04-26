@@ -21,16 +21,24 @@ Route::get('/inicio', function ()
     return view('inicio');
 });
 
-Route::get('/perfil', 'PerfilController@index')->name('perfilindex')->middleware('auth');   //Vreificación de login (retorna a la pagina de log)
+//--------------------------------------------------------USERS--------------------------------------------------------
+//Route::get('/usuarios', 'UserController@index')->name('users.index');//->middleware('auth');   //Vreificación de login (retorna a la pagina de log)
+Route::resource('users', 'UserController');
 
-//Route::get('/equipo', 'EquipoController@index')->name('equipoindex');
+//-------------------------------------------------------EQUIPOS-------------------------------------------------------
+Route::get('/equipo', 'EquipoController@index')->name('equipos.index');
 
-//Route::get('/pronosticos', 'PronosticosController@index')->name('pronosticosindex');
+//-----------------------------------------------------PRONOSTICOS-----------------------------------------------------
+Route::get('/pronosticos', 'PronosticoController@index')->name('pronosticos.index');
 
-//Route::get('/resultados', 'ResultadosController@index')->name('resultadosindex');
+//-------------------------------------------------------PARTIDOS------------------------------------------------------
+Route::get('/resultados', 'PartidoController@index')->name('partidos.index');
 
-Route::get('/jornadas', 'JornadaController@index')->name('jornadas.index');
+//------------------------------------------------------JORNADAS-------------------------------------------------------
+//Route::get('/jornadas', 'JornadaController@index')->name('jornadas.index');
+Route::resource('jornadas', 'JornadaController');
 
+//-------------------------------------------------------PAGINAS-------------------------------------------------------
 Route::get('/informacion', 'PaginasController@info');
 
 Route::get('/contacto', 'PaginasController@contacto');
