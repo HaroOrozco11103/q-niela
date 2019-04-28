@@ -36,7 +36,7 @@
                     {{ $partido->equipo_visitante == $equipo->id ? "$equipo->nombre" : '' }}
                   @endforeach
                 </td>
-                <td>{{ $partido->resultado }}</td>
+                <td>{{ $partido->resL }} - {{ $partido->resV }}</td>
                 <td>
                   <a href="{{ route('partidos.edit', $partido->id) }}" class="btn btn-sm btn-warning">Editar</a>
                 </td>

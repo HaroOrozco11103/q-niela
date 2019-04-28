@@ -83,7 +83,7 @@ class UserController extends Controller
         $equipos = Equipo::all();
         return view('users.userShow', compact('user', 'equipos'));
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -107,8 +107,8 @@ class UserController extends Controller
       {
         $request->validate([
           'nombre' => 'required|string|max:255',
-          'username' => 'required|string|min:5|max:25|unique:users',
-          'email' => 'required|string|email|max:255|unique:users',
+          'username' => 'required|string|min:5|max:25',
+          'email' => 'required|string|email|max:255',
           'password' => 'required|string|min:8|max:30|confirmed',
           'equipo_id' => 'nullable',
         ]);

@@ -50,16 +50,16 @@ class PartidoController extends Controller
     {
         $request->validate([
           'jornada_id' => 'required|integer',
-          'equipo_local' => 'required|integer',//different:equipo_visitante
-          'equipo_visitante' => 'required|integer',//different:equipo_local
-          'resultado' => 'nullable',
+          'equipo_local' => 'required|integer',//|different:equipo_visitante'
+          'equipo_visitante' => 'required|integer|different:equipo_local',
+          'resL' => 'nullable|integer',
+          'resV' => 'nullable|integer',
         ]);
 
         $par = new Partido();
         $par->jornada_id = $request->jornada_id;
         $par->equipo_local = $request->equipo_local;
         $par->equipo_visitante = $request->equipo_visitante;
-        $par->resultado = "0 - 0";
 
         $par->save();
 
@@ -115,6 +115,20 @@ class PartidoController extends Controller
     }
 
     /**
+     * Muestra los partidos de X jornada
+     *
+     * @param  \App\Partido  $partido
+     * @return \Illuminate\Http\Response
+     */
+    public function editRes(Partido $partido, Jornada $jornada)
+    {
+        $jornadas = Jornada::all();
+        $partidos = Partido::all();
+        $equipos = Equipo::all();
+        return view('partidos.partidoValoresForm', compact('partidos', 'jornadas', 'equipos', 'jornada'));
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Partido  $partido
@@ -136,7 +150,24 @@ class PartidoController extends Controller
      */
     public function update(Request $request, Partido $partido)
     {
+      $request->validate([
+        'jornada_id' => 'required|integer',
+        'equipo_local' => 'required|integer',//different:equipo_visitante
+        'equipo_visitante' => 'required|integer|different:equipo_local',
+        'resL' => 'nullable|integer',
+        'resV' => 'nullable|integer',
+      ]);
 
+      $partido->jornada_id = $request->jornada_id;
+      $partido->equipo_local = $request->equipo_local;
+      $partido->equipo_visitante = $request->equipo_visitante;
+      //$partido->resL = 0;
+      //$partido->resV = 0;
+      $partido->resL = $request->resL;
+      $partido->resV = $request->resV;
+      $partido->save();
+
+      return redirect()->route('partidos.show', $partido->id);
     }
 
     /**

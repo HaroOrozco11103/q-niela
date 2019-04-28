@@ -6,6 +6,10 @@
         <div class="card">
           <h1>Partidos</h1>
 
+          <form method="POST">
+            <input type="hidden" name="_method" value="PATCH">
+            @csrf
+
           <table class="table table-hover">
             <thead class="thead-dark">
               <tr>
@@ -14,7 +18,6 @@
                 <th scope="col">Local</th>
                 <th scope="col">Visitante</th>
                 <th scope="col">Resultado</th>
-                <th scope="col">Opciones</th>
               </tr>
             </thead>
             <tbody>
@@ -37,16 +40,16 @@
                         {{ $par->equipo_visitante == $equipo->id ? "$equipo->nombre" : '' }}
                       @endforeach
                     </td>
-                    <td>{{ $par->resL }} - {{ $par->resV }}</td>
                     <td>
-                      <a href="{{ route('partidos.show', $par->id) }}" class="btn btn-infobtn-sm">Opciones</a>
+                      <input type="number" class="form-control" name="resL" value="{{ $par->resL ?? '' }}" min="0" max="25"> - <input type="number" class="form-control" name="resV" value="{{ $par->resV ?? '' }}" min="0" max="25">
                     </td>
                   </tr>
                 @endif
               @endforeach
             </tbody>
           </table>
-
+            <button type="submit" class="btn btn-primary ml-auto">Aceptar</button>
+          </form>
         </div>
       </div>
     </div>

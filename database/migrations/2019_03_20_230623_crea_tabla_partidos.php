@@ -22,7 +22,8 @@ class CreaTablaPartidos extends Migration
             $table->foreign('equipo_local')->references('id')->on('equipos');
             $table->unsignedInteger('equipo_visitante');
             $table->foreign('equipo_visitante')->references('id')->on('equipos');
-            $table->string('resultado')->nullable();
+            $table->integer('resL')->nullable();
+            $table->integer('resV')->nullable();
         });
     }
 

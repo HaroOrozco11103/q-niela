@@ -3,7 +3,7 @@
 @section('content')
     <div class="row" style="padding:50px;">
       <div class="col-md-6 offset-3">
-        <h1>Usuario</h1>
+        <h1>Usuarios</h1>
 
           <table class="table table-hover">
             <thead class="thead-dark">
@@ -24,7 +24,7 @@
                 <td>{{ $usr->username }}</td>
                 <td>
                   @foreach($equipos as $equipo)
-                    {{ $usr->equipo_id == $equipo->id ? "$usr->equipo_id - $equipo->nombre" : '' }}
+                    {{ $usr->equipo_id == $equipo->id ? "$equipo->nombre" : '' }}
                   @endforeach
                 </td>
                 <td>{{ $usr->tipo }}</td>

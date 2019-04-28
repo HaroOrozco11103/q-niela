@@ -36,6 +36,8 @@ Route::get('/pronosticos', 'PronosticoController@index')->name('pronosticos.inde
 Route::resource('partidos', 'partidoController');
 Route::get('/partidos/partidos-por-jornada/{jornada}', 'PartidoController@showJorn')
     ->name('partidos.showJorn');
+Route::get('/partidos/partidos-resultados/{jornada}', 'PartidoController@editRes')
+    ->name('partidos.editRes');
 
 //------------------------------------------------------JORNADAS-------------------------------------------------------
 //Route::get('/jornadas', 'JornadaController@index')->name('jornadas.index');

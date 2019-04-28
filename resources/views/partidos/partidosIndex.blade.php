@@ -11,6 +11,7 @@
               <tr>
                 <th scope="col">Jornada</th>
                 <th scope="col">Ver partidos</th>
+                <th scope="col">Modificar marcadores</th>
               </tr>
             </thead>
             <tbody>
@@ -19,6 +20,9 @@
                 <td>{{ $jor->numero }}</td>
                 <td>
                   <a href="{{ route('partidos.showJorn', $jor->id) }}" class="btn btn-infobtn-sm">Partidos de esta jornada</a>
+                </td>
+                <td>
+                  <a href="{{ route('partidos.editRes', $jor->id) }}" class="btn btn-infobtn-sm">Cambiar resultados</a>
                 </td>
               </tr>
               @endforeach
