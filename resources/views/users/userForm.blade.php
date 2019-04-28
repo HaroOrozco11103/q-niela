@@ -69,14 +69,28 @@
                           </div>
                       </div>
 
+                      @if(isset($user))
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Equipo (Opcional)</label>
+                            <div class="col-md-6">
+                              <select name="equipo_id" class="form-control">
+                                <option value="{{ $user->equipo_id }}">0 - Ninguno</option>
+                                @foreach($equipos as $equipo)
+                                   <option value="{{ $equipo->id }}" {{ isset($user) && $user->equipo_id == $equipo->id ? 'selected' : '' }}>{{ $equipo->id }} - {{ $equipo->nombre }}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                        </div>
+
                       <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right">Tipo de usuario</label>
                         <div class="col-md-6">
-                          <input type="radio" name="comun" value="{{ isset($user) ? $user->tipo : '' }}" checked>Común
+                          <input type="radio" name="tipo" value="{{ $user->tipo = "comun" }}" checked>Común
                           <br>
-                          <input type="radio" name="admin" value="{{ isset($user) ? $user->tipo : '' }}"> Administrador
+                          <input type="radio" name="tipo" value="{{ $user->tipo = "admin" }}"> Administrador
                         </div>
                       </div>
+                    @endif
 
                       <div class="form-group row mb-0">
                           <div class="col-md-6 offset-md-4">

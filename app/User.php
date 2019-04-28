@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nombre', 'username', 'email', 'password',
+        'nombre', 'username', 'email', 'password', 'equipo_id',
     ];
 
     /**
@@ -39,8 +39,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    //public function
-    //{
-
-    //}
+    /**
+     * Establece relación hacia un equipo
+     * @return type
+     */
+    public function equipo()
+    {
+        return $this->belongsTo(Equipo::class);
+    }
 }

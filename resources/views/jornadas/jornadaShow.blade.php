@@ -12,7 +12,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Número de jornada</th>
                 <th scope="col">Fecha en que inicia</th>
-                <th scope="col">Fecha en que termina </th>
+                <th scope="col">Fecha en que termina</th>
                 <th scope="col">Modificar</th>
                 <th scope="col">Eliminar</th>
               </tr>

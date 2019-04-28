@@ -6,8 +6,18 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Agregar equipo') }}</div>
-
                 <div class="card-body">
+                  
+                  @if ($errors->any())
+                    <div class="alert alert-danger">
+                      <ul>
+                        @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                        @endforeach
+                      </ul>
+                    </div>
+                  @endif
+
                   @if(isset($equipo))
                     <form method="POST" action="{{ route('equipos.update', $equipo->id) }}">
                       <input type="hidden" name="_method" value="PATCH">
@@ -19,7 +29,12 @@
                       <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right">Nombre</label>
                         <div class="col-md-6">
-                          <input type="text" class="form-control" name="nombre" value="{{ $equipo->nombre ?? '' }}" placeholder="Nombre del equipo">
+                          <input type="text" class="form-control" name="nombre" value="{{ $equipo->nombre ?? '' }}{{ old('nombre') }}" placeholder="Nombre del equipo">
+                          @if ($errors->has('nombre'))
+                            <span class="alert alert-danger">
+                              <strong>{{ $errors->first('nombre') }}</strong>
+                            </span>
+                          @endif
                         </div>
                       </div>
 

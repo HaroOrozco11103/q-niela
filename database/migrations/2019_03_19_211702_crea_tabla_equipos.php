@@ -16,13 +16,13 @@ class CreaTablaEquipos extends Migration
         Schema::create('equipos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre')->unique();
-            $table->integer('gana');
-            $table->integer('pierde');
-            $table->integer('empata');
-            $table->integer('golFavor');
-            $table->integer('golContra');
-            $table->integer('difGoles');
-            $table->integer('puntos');
+            $table->integer('gana')->default(0);
+            $table->integer('pierde')->default(0);
+            $table->integer('empata')->default(0);
+            $table->integer('golFavor')->default(0);
+            $table->integer('golContra')->default(0);
+            $table->integer('difGoles')->default(0);
+            $table->integer('puntos')->default(0);
         });
     }
 

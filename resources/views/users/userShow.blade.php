@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row justify-content-center" style="padding:50px;">
-      <div class="col-8">
+      <div class="col-sm-12">
         <div class="card">
           <h1>Opciones de Usuario</h1>
 
@@ -13,11 +13,12 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Correo electrónico</th>
                 <th scope="col">Nombre de usuario</th>
+                <th scope="col">Equipo</th>
                 <th scope="col">Tipo</th>
                 <th scope="col">Creado</th>
                 <th scope="col">Actualizado</th>
-                <th scope="col">Creado</th>
-                <th scope="col">Modificado</th>
+                <th scope="col">Modificar</th>
+                <th scope="col">Eliminar</th>
               </tr>
             </thead>
             <tbody>
@@ -26,6 +27,11 @@
                 <td>{{ $user->nombre }}</td>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->username }}</td>
+                <td>
+                  @foreach($equipos as $equipo)
+                    {{ $user->equipo_id == $equipo->id ? "$equipo->nombre" : '' }}
+                  @endforeach
+                </td>
                 <td>{{ $user->tipo }}</td>
                 <td>{{ $user->created_at }}</td>
                 <td>{{ $user->updated_at }}</td>

@@ -15,10 +15,10 @@ class CreaTablaPronosticos extends Migration
     {
         Schema::create('pronosticos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('user_username')->nullable();
-            $table->foreign('user_username')->references('username')->on('users');
-            $table->integer('jornada_numero')->unique();
-            $table->foreign('jornada_numero')->references('numero')->on('jornadas');
+            $table->unsignedInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedInteger('jornada_id')->unique();
+            $table->foreign('jornada_id')->references('id')->on('jornadas');
             $table->integer('totalAciertos');
         });
     }

@@ -13,7 +13,7 @@
 
 Route::get('/', function ()
 {
-    return view('welcome');
+    return view('inicio');
 });
 
 Route::get('/inicio', function ()
@@ -32,7 +32,10 @@ Route::resource('equipos', 'EquipoController');
 Route::get('/pronosticos', 'PronosticoController@index')->name('pronosticos.index');
 
 //-------------------------------------------------------PARTIDOS------------------------------------------------------
-Route::get('/resultados', 'PartidoController@index')->name('partidos.index');
+//Route::get('/resultados', 'PartidoController@index')->name('partidos.index');
+Route::resource('partidos', 'partidoController');
+Route::get('/partidos/partidos-por-jornada/{jornada}', 'PartidoController@showJorn')
+    ->name('partidos.showJorn');
 
 //------------------------------------------------------JORNADAS-------------------------------------------------------
 //Route::get('/jornadas', 'JornadaController@index')->name('jornadas.index');

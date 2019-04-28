@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Partido;
+use App\User;
 use App\Equipo;
 use Illuminate\Http\Request;
 
@@ -41,7 +43,18 @@ class EquipoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+      {
+        $request->validate([
+          'nombre' => 'required|string|min:3|max:255|unique:equipos',
+          'gana' => 'integer|max:17',
+          'pierde' => 'integer|max:17',
+          'empata' => 'integer|max:17',
+          'golFavor' => 'integer',
+          'golContra' => 'integer',
+          'difGoles' => 'integer',
+          'puntos' => 'integer|max:51',
+        ]);
+
         $eqp = new Equipo();
         $eqp->nombre = $request->input('nombre');
         $eqp->gana = 0;
@@ -88,6 +101,17 @@ class EquipoController extends Controller
      */
     public function update(Request $request, Equipo $equipo)
     {
+        $request->validate([
+          'nombre' => 'required|string|min:3|max:255|unique:equipos',
+          'gana' => 'integer|max:17',
+          'pierde' => 'integer|max:17',
+          'empata' => 'integer|max:17',
+          'golFavor' => 'integer',
+          'golContra' => 'integer',
+          'difGoles' => 'integer',
+          'puntos' => 'integer|max:51',
+        ]);
+
         $equipo->nombre = $request->input('nombre');
         $equipo->gana = 0;
         $equipo->pierde = 0;

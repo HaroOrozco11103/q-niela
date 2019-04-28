@@ -1,5 +1,5 @@
 @extends('layouts.home-layout')
 
 @section('contenido')
-CONTENIDO
+CONTENIDO BIENVENIDA, logo, etc
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Equipo;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -20,12 +21,13 @@ class UserController extends Controller
     public function index()
     {
       $users = User::all();
+      $equipos = Equipo::all();
       //$usr = user::where('id', '>', '1')->get();
 
       //$usr = DB::table('users')->get();
       //dd($usr);
       //return $usr;
-      return view('users.usersIndex', compact('users'));
+      return view('users.usersIndex', compact('users', 'equipos'));
     }
 
     /**
@@ -36,7 +38,8 @@ class UserController extends Controller
     public function create()
     {
         //return view('auth.register');
-        return view('users.userForm');
+        $equipos = Equipo::all();
+        return view('users.userForm', compact('equipos'));
     }
 
     /**
@@ -47,6 +50,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+          'nombre' => 'required|string|max:255',
+          'username' => 'required|string|min:5|max:25|unique:users',
+          'email' => 'required|string|email|max:255|unique:users',
+          'password' => 'required|string|min:6|max:30|confirmed',
+          'equipo_id' => 'nullable',
+        ]);
+
         $usr = new User(); 	//crea un objeto dependencia
         $usr->nombre = $request->input('nombre');
         $usr->email = $request->input('email');
@@ -69,9 +80,10 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.userShow', compact('user'));
+        $equipos = Equipo::all();
+        return view('users.userShow', compact('user', 'equipos'));
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -80,7 +92,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.userForm', compact('user'));
+        $equipos = Equipo::all();
+        return view('users.userForm', compact('user', 'equipos'));
     }
 
     /**
@@ -91,11 +104,21 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
-    {
+      {
+        $request->validate([
+          'nombre' => 'required|string|max:255',
+          'username' => 'required|string|min:5|max:25|unique:users',
+          'email' => 'required|string|email|max:255|unique:users',
+          'password' => 'required|string|min:8|max:30|confirmed',
+          'equipo_id' => 'nullable',
+        ]);
+
         $user->nombre = $request->input('nombre');
         $user->username = $request->input('username');
         $user->email = $request->input('email');
         $user->password = Hash::make('$request->password');
+        $user->equipo_id = $request->equipo_id;
+        $user->tipo = $request->input('tipo');
         $user->save();
         return redirect()->route('users.show', $user->id);
     }

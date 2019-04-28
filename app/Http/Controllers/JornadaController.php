@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-//use Illuminate\Support\Facades\DB;
+use App\Partido;
 use App\Jornada;
 use Illuminate\Http\Request;
 
@@ -47,10 +47,12 @@ class JornadaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+          'numero' => 'required|integer|max:17|unique:jornadas',
+        ]);
         //dd('Entra a metodo store');		//dd para hacer pruebas y revisar qué está pasando
         //dd($request->all());
         $jor = new Jornada(); 	//crea un objeto dependencia
-        //$jor->jornada = $request->input('numero');
 
         $jor->numero = $request->numero;
 
@@ -93,6 +95,10 @@ class JornadaController extends Controller
      */
     public function update(Request $request, Jornada $jornada)
     {
+        $request->validate([
+          'numero' => 'required|integer|max:25|unique:jornadas',
+        ]);
+
         $jornada->numero = $request->numero;
         $jornada->inicio = \Carbon\Carbon::createFromFormat('Y-m-d', $request->input('inicio'))->toDateString();
         $jornada->fin = \Carbon\Carbon::createFromFormat('Y-m-d', $request->input('fin'))->toDateString();

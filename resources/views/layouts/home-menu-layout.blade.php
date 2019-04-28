@@ -51,7 +51,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ asset('resultados.index') }}">
+          <a class="nav-link" href="{{ route('partidos.index') }}">
             <i class="ni ni-bullet-list-67 text-green"></i> Resultados
           </a>
         </li>

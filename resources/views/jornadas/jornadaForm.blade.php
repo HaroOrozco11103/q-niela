@@ -8,6 +8,16 @@
                 <div class="card-header">{{ __('Agregar jornada') }}</div>
 
                 <div class="card-body">
+                  @if ($errors->any())
+                    <div class="alert alert-danger">
+                      <ul>
+                        @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                        @endforeach
+                      </ul>
+                    </div>
+                  @endif
+
                   @if(isset($jornada))
                     <form method="POST" action="{{ route('jornadas.update', $jornada->id) }}">
                       <input type="hidden" name="_method" value="PATCH">
@@ -19,7 +29,12 @@
                       <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right">Número</label>
                         <div class="col-md-6">
-                          <input type="text" class="form-control" name="numero" value="{{ $jornada->numero ?? '' }}" placeholder="Número de jornada">
+                          <input type="text" class="form-control" name="numero" value="{{ $jornada->numero ?? '' }}{{ old('numero') }}" placeholder="Número de jornada">
+                          @if ($errors->has('numero'))
+                            <span class="alert alert-danger">
+                              <strong>{{ $errors->first('numero') }}</strong>
+                            </span>
+                          @endif
                         </div>
                       </div>
 

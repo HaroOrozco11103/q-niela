@@ -15,14 +15,14 @@ class CreaTablaPartidos extends Migration
     {
         Schema::create('partidos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('jornada_numero');
-            $table->foreign('jornada_numero')->references('numero')->on('jornadas');
+            $table->unsignedInteger('jornada_id');
+            $table->foreign('jornada_id')->references('id')->on('jornadas');
             //->onDelete('cascade');
-            $table->string('equipo_local');
-            $table->foreign('equipo_local')->references('nombre')->on('equipos');
-            $table->string('equipo_visitante');
-            $table->foreign('equipo_visitante')->references('nombre')->on('equipos');
-            $table->string('resultado');
+            $table->unsignedInteger('equipo_local');
+            $table->foreign('equipo_local')->references('id')->on('equipos');
+            $table->unsignedInteger('equipo_visitante');
+            $table->foreign('equipo_visitante')->references('id')->on('equipos');
+            $table->string('resultado')->nullable();
         });
     }
 
