@@ -3,6 +3,7 @@
 @section('content')
     <div class="row" style="padding:50px;">
       <div class="col-md-6 offset-3">
+        <a class="btn btn-infobtn-sm" href="{{ route('users.create') }}">Agregar usuario</a>
         <h1>Usuarios</h1>
 
           <table class="table table-hover">

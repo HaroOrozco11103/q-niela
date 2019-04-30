@@ -31,6 +31,7 @@ class PartidoController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param  \App\Jornada  $jor
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -106,26 +107,12 @@ class PartidoController extends Controller
      * @param  \App\Partido  $partido
      * @return \Illuminate\Http\Response
      */
-    public function showJorn(Partido $partido, Jornada $jornada)
+    public function showJorn(Jornada $jornada)
     {
         $jornadas = Jornada::all();
         $partidos = Partido::all();
         $equipos = Equipo::all();
         return view('partidos.partidosJornada', compact('partidos', 'jornadas', 'equipos', 'jornada'));
-    }
-
-    /**
-     * Muestra los partidos de X jornada
-     *
-     * @param  \App\Partido  $partido
-     * @return \Illuminate\Http\Response
-     */
-    public function editRes(Partido $partido, Jornada $jornada)
-    {
-        $jornadas = Jornada::all();
-        $partidos = Partido::all();
-        $equipos = Equipo::all();
-        return view('partidos.partidoValoresForm', compact('partidos', 'jornadas', 'equipos', 'jornada'));
     }
 
     /**
@@ -139,6 +126,21 @@ class PartidoController extends Controller
         $jornadas = Jornada::all();
         $equipos = Equipo::all();
         return view('partidos.partidoForm', compact('partido', 'equipos', 'jornadas'));
+    }
+
+    /**
+     * Muestra los partidos de X jornada
+     *
+     * @param  \App\Partido  $partido
+     * @param  \App\Jornada  $jornada
+     * @return \Illuminate\Http\Response
+     */
+    public function editRes(Partido $partido, Jornada $jornada)
+    {
+        $jornadas = Jornada::all();
+        $partidos = Partido::all();
+        $equipos = Equipo::all();
+        return view('partidos.partidoValoresForm', compact('partidos', 'jornadas', 'equipos', 'jornada', 'partido'));
     }
 
     /**
@@ -168,6 +170,28 @@ class PartidoController extends Controller
       $partido->save();
 
       return redirect()->route('partidos.show', $partido->id);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Partido  $partido
+     * @param  \App\Jornada  $jornada
+     * @return \Illuminate\Http\Response
+     */
+    public function updateRes(Request $request, Partido $partido, Jornada $jornada)
+    {
+      $request->validate([
+        'resL' => 'nullable|integer',
+        'resV' => 'nullable|integer',
+      ]);
+
+      $partido->resL = $request->resL;
+      $partido->resV = $request->resV;
+      $partido->save();
+
+      return redirect()->route('partidos.editRes', $partido->id, $jornada->id);
     }
 
     /**

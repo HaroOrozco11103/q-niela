@@ -4,6 +4,7 @@
     <div class="row justify-content-center" style="padding:50px;">
       <div class="col-8">
         <div class="card">
+          <a class="btn btn-infobtn-sm" href="{{ route('jornadas.create') }}">Agregar jornada</a>
           <h1>Jornadas</h1>
 
           <table class="table table-hover">

@@ -6,10 +6,6 @@
         <div class="card">
           <h1>Partidos</h1>
 
-          <form method="POST">
-            <input type="hidden" name="_method" value="PATCH">
-            @csrf
-
           <table class="table table-hover">
             <thead class="thead-dark">
               <tr>
@@ -22,6 +18,7 @@
             </thead>
             <tbody>
               @foreach($partidos as $par)
+              <div>
                 @if($jornada->id == $par->jornada_id)
                   <tr>
                     <td>{{ $par->id }}</td>
@@ -41,15 +38,20 @@
                       @endforeach
                     </td>
                     <td>
-                      <input type="number" class="form-control" name="resL" value="{{ $par->resL ?? '' }}" min="0" max="25"> - <input type="number" class="form-control" name="resV" value="{{ $par->resV ?? '' }}" min="0" max="25">
+                      <form action="{{ route('partidos.updateRes', $par->id, $jornada->id) }}" method="POST">
+                        <input type="hidden" name="_method" value="PATCH">
+                        @csrf
+                        <input type="number" class="form-control" name="resL" value="{{ $par->resL ?? '' }}" min="0" max="25"> - <input type="number" class="form-control" name="resV" value="{{ $par->resV ?? '' }}" min="0" max="25">
+
+                        <button type="submit" class="btn btn-primary ml-auto">Aceptar</button>
+                      </form>
                     </td>
                   </tr>
                 @endif
-              @endforeach
-            </tbody>
+              </div>
+            @endforeach
+          </tbody>
           </table>
-            <button type="submit" class="btn btn-primary ml-auto">Aceptar</button>
-          </form>
         </div>
       </div>
     </div>

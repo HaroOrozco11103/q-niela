@@ -29,7 +29,8 @@ Route::resource('users', 'UserController');
 //Route::get('/equipo', 'EquipoController@index')->name('equipos.index');
 Route::resource('equipos', 'EquipoController');
 //-----------------------------------------------------PRONOSTICOS-----------------------------------------------------
-Route::get('/pronosticos', 'PronosticoController@index')->name('pronosticos.index');
+//Route::get('/pronosticos', 'PronosticoController@index')->name('pronosticos.index');
+Route::resource('pronosticos', 'PronosticoController');
 
 //-------------------------------------------------------PARTIDOS------------------------------------------------------
 //Route::get('/resultados', 'PartidoController@index')->name('partidos.index');
@@ -38,6 +39,10 @@ Route::get('/partidos/partidos-por-jornada/{jornada}', 'PartidoController@showJo
     ->name('partidos.showJorn');
 Route::get('/partidos/partidos-resultados/{jornada}', 'PartidoController@editRes')
     ->name('partidos.editRes');
+//Route::match(['put', 'patch'], '/partidos/cambiar-resultados', 'PartidoController@updateRes')
+    //->name('partidos.updateRes');
+Route::PATCH('/partidos/cambiar-resultados/{partido}', 'PartidoController@updateRes')
+    ->name('partidos.updateRes');
 
 //------------------------------------------------------JORNADAS-------------------------------------------------------
 //Route::get('/jornadas', 'JornadaController@index')->name('jornadas.index');

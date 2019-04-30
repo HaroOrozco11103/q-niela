@@ -15,6 +15,7 @@ class Partido extends Model
      */
     protected $fillable = [
         'jornada_id', 'equipo_local', 'equipo_visitante',
+        'resL', 'resV',
     ];
 
     /**

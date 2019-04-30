@@ -49,6 +49,7 @@
                           </div>
                       </div>
 
+                      @if(!isset($user))
                       <div class="form-group row">
                           <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
                           <div class="col-md-6">
@@ -68,8 +69,14 @@
                               <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                           </div>
                       </div>
+                      @endif
 
                       @if(isset($user))
+                        <div class="form-group">
+                            <a class="btn btn-infobtn-sm" href="{{ route('users.create') }}">Modificar contraseña</a>
+                          </div>
+                        </div>
+
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">Equipo (Opcional)</label>
                             <div class="col-md-6">
