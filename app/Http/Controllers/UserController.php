@@ -97,6 +97,17 @@ class UserController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function editPass(User $user)
+    {
+        return view('users.cambiarPasswordForm', compact('user'));
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -109,18 +120,36 @@ class UserController extends Controller
           'nombre' => 'required|string|max:255',
           'username' => 'required|string|min:5|max:25',
           'email' => 'required|string|email|max:255',
-          'password' => 'required|string|min:8|max:30|confirmed',
+          //'password' => 'required|string|min:8|max:30|confirmed',
           'equipo_id' => 'nullable',
         ]);
 
         $user->nombre = $request->input('nombre');
         $user->username = $request->input('username');
         $user->email = $request->input('email');
-        $user->password = Hash::make('$request->password');
+        //$user->password = Hash::make('$request->password');
         $user->equipo_id = $request->equipo_id;
         $user->tipo = $request->input('tipo');
         $user->save();
         return redirect()->route('users.show', $user->id);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function updatePass(Request $request, User $user)
+      {
+        $request->validate([
+          'password' => 'required|string|min:8|max:30|confirmed',
+        ]);
+
+        $user->password = Hash::make('$request->password');
+        $user->save();
+        return redirect()->route('users.update', $user->id);
     }
 
     /**

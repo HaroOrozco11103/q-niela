@@ -131,16 +131,15 @@ class PartidoController extends Controller
     /**
      * Muestra los partidos de X jornada
      *
-     * @param  \App\Partido  $partido
      * @param  \App\Jornada  $jornada
      * @return \Illuminate\Http\Response
      */
-    public function editRes(Partido $partido, Jornada $jornada)
+    public function editRes(Jornada $jornada)
     {
         $jornadas = Jornada::all();
         $partidos = Partido::all();
         $equipos = Equipo::all();
-        return view('partidos.partidoValoresForm', compact('partidos', 'jornadas', 'equipos', 'jornada', 'partido'));
+        return view('partidos.partidoValoresForm', compact('partidos', 'jornadas', 'equipos', 'jornada'));
     }
 
     /**
@@ -191,7 +190,7 @@ class PartidoController extends Controller
       $partido->resV = $request->resV;
       $partido->save();
 
-      return redirect()->route('partidos.editRes', $partido->id, $jornada->id);
+      return redirect()->route('partidos.editRes', $partido->jornada_id);
     }
 
     /**

@@ -12,7 +12,7 @@
                     <form method="POST" action="{{ route('users.update', $user->id) }}">
                       <input type="hidden" name="_method" value="PATCH">
                   @else
-                    <form method="POST" action="{{ route('users.store') }}">
+                    <form method="POST" action="{{ route('register') }}">
                   @endif
                       @csrf
 
@@ -73,7 +73,7 @@
 
                       @if(isset($user))
                         <div class="form-group">
-                            <a class="btn btn-infobtn-sm" href="{{ route('users.create') }}">Modificar contraseña</a>
+                            <a class="btn btn-infobtn-sm" href="{{ route('users.editPass', $user->id) }}">Modificar contraseña</a>
                           </div>
                         </div>
 

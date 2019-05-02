@@ -29,9 +29,9 @@ class LoginController extends Controller
 
     protected function redirectTo()
     {
-      session(['apodo' => \Auth::user()->nombre ]);
+      //session(['apodo' => \Auth::user()->nombre ]);
 
-      return '/jornadas';
+      return '/users';
     }
 
     /**

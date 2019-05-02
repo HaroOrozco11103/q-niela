@@ -24,6 +24,10 @@ Route::get('/inicio', function ()
 //--------------------------------------------------------USERS--------------------------------------------------------
 //Route::get('/usuarios', 'UserController@index')->name('users.index');//->middleware('auth');   //Vreificación de login (retorna a la pagina de log)
 Route::resource('users', 'UserController');
+Route::get('users/contrasena/{user}', 'UserController@editPass')
+->name('users.editPass');
+Route::PATCH('users/cambiar-contraseña/{user}', 'UserController@updatePass')
+->name('users.updatePass');
 
 //-------------------------------------------------------EQUIPOS-------------------------------------------------------
 //Route::get('/equipo', 'EquipoController@index')->name('equipos.index');

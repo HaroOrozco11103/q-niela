@@ -38,7 +38,7 @@
                       @endforeach
                     </td>
                     <td>
-                      <form action="{{ route('partidos.updateRes', $par->id, $jornada->id) }}" method="POST">
+                      <form action="{{ route('partidos.updateRes', $par->id, $par->jornada_id) }}" method="POST">
                         <input type="hidden" name="_method" value="PATCH">
                         @csrf
                         <input type="number" class="form-control" name="resL" value="{{ $par->resL ?? '' }}" min="0" max="25"> - <input type="number" class="form-control" name="resV" value="{{ $par->resV ?? '' }}" min="0" max="25">
