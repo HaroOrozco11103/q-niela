@@ -12,7 +12,7 @@
                     <form method="POST" action="{{ route('users.update', $user->id) }}">
                       <input type="hidden" name="_method" value="PATCH">
                   @else
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('users.store') }}">
                   @endif
                       @csrf
 
@@ -81,7 +81,7 @@
                             <label class="col-md-4 col-form-label text-md-right">Equipo (Opcional)</label>
                             <div class="col-md-6">
                               <select name="equipo_id" class="form-control">
-                                <option value="{{ $user->equipo_id }}">0 - Ninguno</option>
+                                <option value=>0 - Ninguno</option>
                                 @foreach($equipos as $equipo)
                                    <option value="{{ $equipo->id }}" {{ isset($user) && $user->equipo_id == $equipo->id ? 'selected' : '' }}>{{ $equipo->id }} - {{ $equipo->nombre }}</option>
                                 @endforeach
@@ -102,7 +102,11 @@
                       <div class="form-group row mb-0">
                           <div class="col-md-6 offset-md-4">
                               <button type="submit" class="btn btn-primary">
+                                @if(isset($user))
+                                  Guardar cambios
+                                @else
                                   {{ __('Crear Cuenta') }}
+                                @endif
                               </button>
                           </div>
                       </div>

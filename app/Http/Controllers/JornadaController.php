@@ -20,13 +20,20 @@ class JornadaController extends Controller
      */
     public function index()
     {
-      $jornadas = Jornada::all();
-      //$jor = Jornada::where('id', '>', '1')->get();
+      if(\Auth::user()->tipo == "admin")
+      {
+        $jornadas = Jornada::all();
+        //$jor = Jornada::where('id', '>', '1')->get();
 
-      //$jor = DB::table('jornadas')->get();
-      //dd($jor);
-      //return $jor;
-      return view('jornadas.jornadasIndex', compact('jornadas'));
+        //$jor = DB::table('jornadas')->get();
+        //dd($jor);
+        //return $jor;
+        return view('jornadas.jornadasIndex', compact('jornadas'));
+      }
+      elseif(\Auth::user()->tipo == "comun")
+      {
+        //VISTA USUARIO
+      }
     }
 
     /**
@@ -36,7 +43,14 @@ class JornadaController extends Controller
      */
     public function create()
     {
+      if(\Auth::user()->tipo == "admin")
+      {
         return view('jornadas.JornadaForm');
+      }
+      elseif(\Auth::user()->tipo == "comun")
+      {
+        //VISTA index
+      }
     }
 
     /**
@@ -47,6 +61,8 @@ class JornadaController extends Controller
      */
     public function store(Request $request)
     {
+      if(\Auth::user()->tipo == "admin")
+      {
         $request->validate([
           'numero' => 'required|integer|max:17|unique:jornadas',
         ]);
@@ -62,6 +78,11 @@ class JornadaController extends Controller
         $jor->save();		//guarda la información en la db
 
         return  redirect()->route('jornadas.index');		//salir y moverse a index por seguridad (en caso de ser usuario comun y no admin)
+      }
+      elseif(\Auth::user()->tipo == "comun")
+      {
+        //VISTA index
+      }
     }
 
     /**
@@ -72,7 +93,14 @@ class JornadaController extends Controller
      */
     public function show(Jornada $jornada)
     {
+      if (\Auth::user()->tipo == "admin")
+      {
         return view('jornadas.jornadaShow', compact('jornada'));
+      }
+      elseif(\Auth::user()->tipo == "comun")
+      {
+        //VISTA index
+      }
     }
 
     /**
@@ -83,7 +111,14 @@ class JornadaController extends Controller
      */
     public function edit(Jornada $jornada)
     {
+      if (\Auth::user()->tipo == "admin")
+      {
         return view('jornadas.jornadaForm', compact('jornada'));
+      }
+      elseif(\Auth::user()->tipo == "comun")
+      {
+        //VISTA index
+      }
     }
 
     /**
@@ -95,6 +130,8 @@ class JornadaController extends Controller
      */
     public function update(Request $request, Jornada $jornada)
     {
+      if (\Auth::user()->tipo == "admin")
+      {
         $request->validate([
           'numero' => 'required|integer|max:25|unique:jornadas',
         ]);
@@ -104,6 +141,11 @@ class JornadaController extends Controller
         $jornada->fin = \Carbon\Carbon::createFromFormat('Y-m-d', $request->input('fin'))->toDateString();
         $jornada->save();
         return redirect()->route('jornadas.show', $jornada->id);
+      }
+      elseif(\Auth::user()->tipo == "comun")
+      {
+        //VISTA index
+      }
     }
 
     /**
@@ -114,7 +156,14 @@ class JornadaController extends Controller
      */
     public function destroy(Jornada $jornada)
     {
+      if (\Auth::user()->tipo == "admin")
+      {
         $jornada->delete();
         return redirect()->route('jornadas.index');
+      }
+      elseif(\Auth::user()->tipo == "comun")
+      {
+        //VISTA index
+      }
     }
 }

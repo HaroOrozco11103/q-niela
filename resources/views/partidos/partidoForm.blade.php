@@ -30,9 +30,13 @@
                           <label class="col-md-4 col-form-label text-md-right">Jornada</label>
                           <div class="col-md-6">
                             <select name="jornada_id" class="form-control">
-                              @foreach($jornadas as $jornada)
+                              @if($jornada->id != null)
+                                <option value="{{ $jornada->id }}" {{ $jornada->id != null ? 'selected' : '' }}>{{ $jornada->numero }}</option>
+                              @else
+                                @foreach($jornadas as $jornada)
                                   <option value="{{ $jornada->id }}" {{ isset($partido) && $partido->jornada_id == $jornada->id ? 'selected' : '' }}>{{ $jornada->numero }}</option>
-                              @endforeach
+                                @endforeach
+                              @endif
                             </select>
                           </div>
                       </div>

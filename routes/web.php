@@ -43,6 +43,8 @@ Route::get('/partidos/partidos-por-jornada/{jornada}', 'PartidoController@showJo
     ->name('partidos.showJorn');
 Route::get('/partidos/partidos-resultados/{jornada}', 'PartidoController@editRes')
     ->name('partidos.editRes');
+Route::get('/partidos/create/{jornada?}', 'PartidoController@createParJorX')
+    ->name('partidos.createParJorX');
 //Route::match(['put', 'patch'], '/partidos/cambiar-resultados', 'PartidoController@updateRes')
     //->name('partidos.updateRes');
 Route::PATCH('/partidos/cambiar-resultados/{partido}', 'PartidoController@updateRes')

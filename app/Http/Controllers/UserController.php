@@ -20,14 +20,21 @@ class UserController extends Controller
      */
     public function index()
     {
-      $users = User::all();
-      $equipos = Equipo::all();
-      //$usr = user::where('id', '>', '1')->get();
+      if(\Auth::user()->tipo == "admin")
+      {
+        $users = User::all();
+        $equipos = Equipo::all();
+        //$usr = user::where('id', '>', '1')->get();
 
-      //$usr = DB::table('users')->get();
-      //dd($usr);
-      //return $usr;
-      return view('users.usersIndex', compact('users', 'equipos'));
+        //$usr = DB::table('users')->get();
+        //dd($usr);
+        //return $usr;
+        return view('users.usersIndex', compact('users', 'equipos'));
+      }
+      elseif(\Auth::user()->tipo == "comun")
+      {
+        //VISTA USUARIO
+      }
     }
 
     /**
@@ -37,9 +44,16 @@ class UserController extends Controller
      */
     public function create()
     {
+      if(\Auth::user()->tipo == "admin")
+      {
         //return view('auth.register');
         $equipos = Equipo::all();
         return view('users.userForm', compact('equipos'));
+      }
+      elseif(\Auth::user()->tipo == "comun")
+      {
+        //VISTA index
+      }
     }
 
     /**
@@ -50,6 +64,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+      if (\Auth::user()->tipo == "admin")
+      {
         $request->validate([
           'nombre' => 'required|string|max:255',
           'username' => 'required|string|min:5|max:25|unique:users',
@@ -62,7 +78,7 @@ class UserController extends Controller
         $usr->nombre = $request->input('nombre');
         $usr->email = $request->input('email');
         $usr->username = $request->input('username');
-        $usr->password = Hash::make('$request->password');
+        $usr->password = Hash::make($request->password);
         $usr->tipo = "comun";
         //$usr->created_at = \Carbon\Carbon::now()->toDateTimeString()
         //$usr->updated_at = \Carbon\Carbon::now()->toDateTimeString()
@@ -70,6 +86,11 @@ class UserController extends Controller
         $usr->save();		//guarda la información en la db
 
         return  redirect()->route('users.index');		//salir y moverse a index por seguridad (en caso de ser usuario comun y no admin)
+      }
+      elseif(\Auth::user()->tipo == "comun")
+      {
+        //VISTA INEDEx
+      }
     }
 
     /**
@@ -80,8 +101,15 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+      if (\Auth::user()->tipo == "admin")
+      {
         $equipos = Equipo::all();
         return view('users.userShow', compact('user', 'equipos'));
+      }
+      elseif(\Auth::user()->tipo == "comun")
+      {
+        //VISTA index
+      }
     }
 
     /**
@@ -126,12 +154,20 @@ class UserController extends Controller
 
         $user->nombre = $request->input('nombre');
         $user->username = $request->input('username');
-        $user->email = $request->input('email');
         //$user->password = Hash::make('$request->password');
         $user->equipo_id = $request->equipo_id;
-        $user->tipo = $request->input('tipo');
-        $user->save();
-        return redirect()->route('users.show', $user->id);
+        if (\Auth::user()->tipo == "admin")
+        {
+          $user->tipo = $request->input('tipo');
+          $user->email = $request->input('email');
+          $user->save();
+          return redirect()->route('users.show', $user->id);
+        }
+        elseif(\Auth::user()->tipo == "comun")
+        {
+          $user->save();
+          return redirect()->route('users.index');
+        }
     }
 
     /**
@@ -147,7 +183,7 @@ class UserController extends Controller
           'password' => 'required|string|min:8|max:30|confirmed',
         ]);
 
-        $user->password = Hash::make('$request->password');
+        $user->password = Hash::make($request->password);
         $user->save();
         return redirect()->route('users.update', $user->id);
     }
@@ -160,7 +196,14 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+      if (\Auth::user()->tipo == "admin")
+      {
         $user->delete();
         return redirect()->route('users.index');
+      }
+      elseif(\Auth::user()->tipo == "comun")
+      {
+
+      }
     }
 }

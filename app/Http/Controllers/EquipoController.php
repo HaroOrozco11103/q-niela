@@ -21,9 +21,16 @@ class EquipoController extends Controller
      */
     public function index()
     {
-      $equipos = Equipo::all();
+      if (\Auth::user()->tipo == "admin")
+      {
+        $equipos = Equipo::all();
 
-      return view('equipos.equiposIndex', compact('equipos'));
+        return view('equipos.equiposIndex', compact('equipos'));
+      }
+      elseif(\Auth::user()->tipo == "comun")
+      {
+        //VISTA USUARIO
+      }
     }
 
     /**
@@ -33,7 +40,14 @@ class EquipoController extends Controller
      */
     public function create()
     {
+      if (\Auth::user()->tipo == "admin")
+      {
         return view('equipos.equipoForm');
+      }
+      elseif(\Auth::user()->tipo == "comun")
+      {
+        //VISTA index
+      }
     }
 
     /**
@@ -43,6 +57,8 @@ class EquipoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+    {
+      if (\Auth::user()->tipo == "admin")
       {
         $request->validate([
           'nombre' => 'required|string|min:3|max:255|unique:equipos',
@@ -68,6 +84,11 @@ class EquipoController extends Controller
         $eqp->save();
 
         return redirect()->route('equipos.index');
+      }
+      elseif(\Auth::user()->tipo == "comun")
+      {
+        //VISTA index
+      }
     }
 
     /**
@@ -78,7 +99,14 @@ class EquipoController extends Controller
      */
     public function show(Equipo $equipo)
     {
+      if (\Auth::user()->tipo == "admin")
+      {
         return view('equipos.equipoShow', compact('equipo'));
+      }
+      elseif(\Auth::user()->tipo == "comun")
+      {
+        //VISTA index
+      }
     }
 
     /**
@@ -89,7 +117,14 @@ class EquipoController extends Controller
      */
     public function edit(Equipo $equipo)
     {
+      if (\Auth::user()->tipo == "admin")
+      {
         return view('equipos.equipoForm', compact('equipo'));
+      }
+      elseif(\Auth::user()->tipo == "comun")
+      {
+        //VISTA index
+      }
     }
 
     /**
@@ -101,6 +136,8 @@ class EquipoController extends Controller
      */
     public function update(Request $request, Equipo $equipo)
     {
+      if (\Auth::user()->tipo == "admin")
+      {
         $request->validate([
           'nombre' => 'required|string|min:3|max:255|unique:equipos',
           'gana' => 'integer|max:17',
@@ -130,6 +167,11 @@ class EquipoController extends Controller
 
         $equipo->save();
         return redirect()->route('equipos.show', $equipo->id);
+      }
+      elseif(\Auth::user()->tipo == "comun")
+      {
+        //VISTA index
+      }
     }
 
     /**
@@ -140,7 +182,14 @@ class EquipoController extends Controller
      */
     public function destroy(Equipo $equipo)
     {
+      if (\Auth::user()->tipo == "admin")
+      {
         $equipo->delete();
         return redirect()->route('equipos.index');
+      }
+      elseif(\Auth::user()->tipo == "comun")
+      {
+        //VISTA index
+      }
     }
 }

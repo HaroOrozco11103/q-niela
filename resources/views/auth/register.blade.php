@@ -81,7 +81,7 @@
                             <label class="col-md-4 col-form-label text-md-right">Equipo (Opcional)</label>
                             <div class="col-md-6">
                               <select name="equipo_id" class="form-control">
-                                <option value="{{ $user->equipo_id }}">0 - Ninguno</option>
+                                <option value=NULL>0 - Ninguno</option>
                                 @foreach($equipos as $equipo)
                                    <option value="{{ $equipo->id }}" {{ isset($user) && $user->equipo_id == $equipo->id ? 'selected' : '' }}>{{ $equipo->id }} - {{ $equipo->nombre }}</option>
                                 @endforeach
