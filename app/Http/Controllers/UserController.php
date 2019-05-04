@@ -20,10 +20,10 @@ class UserController extends Controller
      */
     public function index()
     {
+      $equipos = Equipo::all();
       if(\Auth::user()->tipo == "admin")
       {
         $users = User::all();
-        $equipos = Equipo::all();
         //$usr = user::where('id', '>', '1')->get();
 
         //$usr = DB::table('users')->get();
@@ -33,7 +33,9 @@ class UserController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA USUARIO
+        $user = \Auth::user();
+        //session(['user' => \Auth::user()->id ]);
+        return view('users.userIndex', compact('user', 'equipos'));
       }
     }
 
@@ -52,7 +54,7 @@ class UserController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA index
+        return  redirect()->route('users.index');
       }
     }
 
@@ -89,7 +91,7 @@ class UserController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA INEDEx
+        return  redirect()->route('users.index');
       }
     }
 
@@ -108,7 +110,7 @@ class UserController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA index
+        return  redirect()->route('users.index');
       }
     }
 
@@ -167,6 +169,7 @@ class UserController extends Controller
         {
           $user->save();
           return redirect()->route('users.index');
+          //session(['user' => \Auth::user()->id ]);
         }
     }
 
@@ -185,7 +188,14 @@ class UserController extends Controller
 
         $user->password = Hash::make($request->password);
         $user->save();
-        return redirect()->route('users.update', $user->id);
+        if (\Auth::user()->tipo == "admin")
+        {
+          return redirect()->route('users.update', $user->id);
+        }
+        elseif(\Auth::user()->tipo == "comun")
+        {
+          return redirect()->route('users.index');
+        }
     }
 
     /**
@@ -203,7 +213,7 @@ class UserController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-
+        return  redirect()->route('users.index');
       }
     }
 }
