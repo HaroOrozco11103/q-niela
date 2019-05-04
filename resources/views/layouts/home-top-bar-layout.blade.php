@@ -1,5 +1,5 @@
-<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
-      <div class="container-fluid">
+<nav class="navbar navbar-top navbar-expand-md navbar-dark " id="navbar-main">
+      <div class="container-fluid d-none d-md-block" >
         <!-- User -->
         <ul class="navbar-nav ml-auto">
             <!-- Authentication Links -->
