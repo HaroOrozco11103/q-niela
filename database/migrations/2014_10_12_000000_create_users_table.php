@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
           $table->timestamp('email_verified_at')->nullable();
           $table->string('password');
           $table->unsignedInteger('equipo_id')->nullable();
-          $table->foreign('equipo_id')->references('id')->on('equipos')->onDelete('null');
+          //$table->foreign('equipo_id')->references('id')->on('equipos')->onDelete('null');
           $table->string('tipo', 30)->default("comun");
           $table->rememberToken();
           $table->timestamps();       //crea dos campos que registran cuando fue creado y cuando se actualizó
