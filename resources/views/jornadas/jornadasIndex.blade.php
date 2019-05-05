@@ -3,9 +3,9 @@
 @section('content')
     <div class="row justify-content-center" style="padding:50px;">
       <div class="col-8">
+        <a class="btn btn-infobtn-sm" href="{{ route('jornadas.create') }}">Agregar jornada</a>
+        <h1>Jornadas</h1>
         <div class="card">
-          <a class="btn btn-infobtn-sm" href="{{ route('jornadas.create') }}">Agregar jornada</a>
-          <h1>Jornadas</h1>
 
           <table class="table table-hover">
             <caption>Jornadas de {{ Auth::user()->nombre }}</caption>
@@ -25,7 +25,7 @@
                 <td>{{ $jor->inicio }}</td>
                 <td>{{ $jor->fin }}</td>
                 <td>
-                  <a href="{{ route('partidos.showJorn', $jor->id) }}" class="btn btn-infobtn-sm">Partidos J{{$jor->id}}</a>
+                  <a href="{{ route('partidos.showJorn', $jor->id) }}" class="btn btn-infobtn-sm">Partidos J{{$jor->numero}}</a>
                 </td>
                 <td>
                   <a href="{{ route('jornadas.show', $jor->id) }}" class="btn btn-infobtn-sm">Opciones</a>

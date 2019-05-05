@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jornada;
 use App\Partido;
 use App\User;
 use App\Equipo;
@@ -21,15 +22,16 @@ class EquipoController extends Controller
      */
     public function index()
     {
+      $equipos = Equipo::all();
       if (\Auth::user()->tipo == "admin")
       {
-        $equipos = Equipo::all();
-
         return view('equipos.equiposIndex', compact('equipos'));
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA USUARIO
+        $partidos = Partido::all();
+        $jornadas = Jornada::all();
+        return view('equipos.equipoIndex', compact('equipos', 'partidos', 'jornadas'));
       }
     }
 

@@ -176,13 +176,13 @@ class PartidoController extends Controller
      * @param  \App\Partido  $partido
      * @return \Illuminate\Http\Response
      */
-    public function edit(Partido $partido)
+    public function edit(Partido $partido, Jornada $jornada)
     {
       if (\Auth::user()->tipo == "admin")
       {
         $jornadas = Jornada::all();
         $equipos = Equipo::all();
-        return view('partidos.partidoForm', compact('partido', 'equipos', 'jornadas'));
+        return view('partidos.partidoForm', compact('partido', 'equipos', 'jornadas', 'jornada'));
       }
       elseif(\Auth::user()->tipo == "comun")
       {
@@ -233,10 +233,10 @@ class PartidoController extends Controller
         $partido->jornada_id = $request->jornada_id;
         $partido->equipo_local = $request->equipo_local;
         $partido->equipo_visitante = $request->equipo_visitante;
-        //$partido->resL = 0;
-        //$partido->resV = 0;
-        $partido->resL = $request->resL;
-        $partido->resV = $request->resV;
+        $partido->resL = null;
+        $partido->resV = null;
+        //$partido->resL = $request->resL;
+        //$partido->resV = $request->resV;
         $partido->save();
 
         return redirect()->route('partidos.show', $partido->id);

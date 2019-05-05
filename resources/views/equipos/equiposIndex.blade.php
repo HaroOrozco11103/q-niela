@@ -3,9 +3,9 @@
 @section('content')
     <div class="row justify-content-center" style="padding:50px;">
       <div class="col-12">
+        <a class="btn btn-infobtn-sm" href="{{ route('equipos.create') }}">Agregar equipo</a>
+        <h1>Equipos</h1>
         <div class="card">
-          <a class="btn btn-infobtn-sm" href="{{ route('equipos.create') }}">Agregar equipo</a>
-          <h1>Equipos</h1>
 
           <table class="table table-hover">
             <thead class="thead-dark">
@@ -39,7 +39,6 @@
               @endforeach
             </tbody>
           </table>
-
         </div>
       </div>
     </div>

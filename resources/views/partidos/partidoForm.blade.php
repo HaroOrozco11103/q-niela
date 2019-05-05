@@ -63,13 +63,6 @@
                           </div>
                       </div>
 
-                      <div class="form-group row">
-                          <label class="col-md-4 col-form-label text-md-right">Marcador</label>
-                          <div class="col-md-6">
-                            <input type="number" class="form-control" name="resL" value="{{ $partido->resL ?? '' }}" min="0" max="25"> - <input type="number" class="form-control" name="resV" value="{{ $partido->resV ?? '' }}" min="0" max="25">
-                          </div>
-                      </div>
-
                       <div class="form-group row mb-0">
                           <div class="col-md-6 offset-md-4">
                               <button type="submit" class="btn btn-primary">

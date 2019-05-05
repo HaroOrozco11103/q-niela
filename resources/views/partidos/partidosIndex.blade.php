@@ -3,9 +3,9 @@
 @section('content')
     <div class="row justify-content-center" style="padding:50px;">
       <div class="col-8">
+        <a class="btn btn-infobtn-sm" href="{{ route('partidos.create') }}">Agregar partido</a>
+        <h1>Partidos de la Jornada:</h1>
         <div class="card">
-          <a class="btn btn-infobtn-sm" href="{{ route('partidos.create') }}">Agregar partido</a>
-          <h1>Partidos de la Jornada:</h1>
 
           <table class="table table-hover">
             <thead class="thead-dark">

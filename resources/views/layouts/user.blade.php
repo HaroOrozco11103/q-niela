@@ -18,8 +18,8 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" >
-                          Administrar
+                      <a class="dropdown-item" href="{{ route('users.index') }}">
+                          Perfil
                       </a>
 
                       <div class="dropdown-divider"></div>
