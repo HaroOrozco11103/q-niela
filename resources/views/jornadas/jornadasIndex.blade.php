@@ -3,19 +3,24 @@
 @section('content')
     <div class="row justify-content-center" style="padding:50px;">
       <div class="col-8">
-        <a class="btn btn-infobtn-sm" href="{{ route('jornadas.create') }}">Agregar jornada</a>
+        @if(\Auth::user()->tipo == "admin")
+          <a class="btn btn-infobtn-sm" href="{{ route('jornadas.create') }}">Agregar jornada</a>
+        @endif
         <h1>Jornadas</h1>
         <div class="card">
 
           <table class="table table-hover">
-            <caption>Jornadas de {{ Auth::user()->nombre }}</caption>
             <thead class="thead-dark">
               <tr>
                 <th scope="col">Número de jornada</th>
                 <th scope="col">Fecha en que inicia</th>
                 <th scope="col">Fecha en que termina</th>
                 <th scope="col">Partidos</th>
-                <th scope="col">Opciones</th>
+                @if(\Auth::user()->tipo == "admin")
+                  <th scope="col">Opciones</th>
+                @elseif(\Auth::user()->tipo == "comun")
+                  <th scope="col">Pronosticos</th>
+                @endif
               </tr>
             </thead>
             <tbody>
@@ -28,7 +33,11 @@
                   <a href="{{ route('partidos.showJorn', $jor->id) }}" class="btn btn-infobtn-sm">Partidos J{{$jor->numero}}</a>
                 </td>
                 <td>
-                  <a href="{{ route('jornadas.show', $jor->id) }}" class="btn btn-infobtn-sm">Opciones</a>
+                  @if(\Auth::user()->tipo == "admin")
+                    <a href="{{ route('jornadas.show', $jor->id) }}" class="btn btn-infobtn-sm">Opciones</a>
+                  @elseif(\Auth::user()->tipo == "comun")
+                    <a href="" class="btn btn-infobtn-sm">Pronosticos de esta jornada</a>
+                  @endif
                 </td>
               </tr>
               @endforeach

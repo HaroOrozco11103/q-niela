@@ -48,7 +48,7 @@ class EquipoController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA index
+        return redirect()->route('equipos.index');
       }
     }
 
@@ -89,7 +89,7 @@ class EquipoController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA index
+        return redirect()->route('equipos.index');
       }
     }
 
@@ -107,7 +107,7 @@ class EquipoController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA index
+        return redirect()->route('equipos.index');
       }
     }
 
@@ -125,7 +125,7 @@ class EquipoController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA index
+        return redirect()->route('equipos.index');
       }
     }
 
@@ -172,7 +172,7 @@ class EquipoController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA index
+        return redirect()->route('equipos.index');
       }
     }
 
@@ -191,7 +191,7 @@ class EquipoController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA index
+        return redirect()->route('equipos.index');
       }
     }
 }

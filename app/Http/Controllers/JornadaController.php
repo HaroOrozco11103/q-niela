@@ -20,20 +20,13 @@ class JornadaController extends Controller
      */
     public function index()
     {
-      if(\Auth::user()->tipo == "admin")
-      {
-        $jornadas = Jornada::all();
-        //$jor = Jornada::where('id', '>', '1')->get();
+      $jornadas = Jornada::all();
+      //$jor = Jornada::where('id', '>', '1')->get();
 
-        //$jor = DB::table('jornadas')->get();
-        //dd($jor);
-        //return $jor;
-        return view('jornadas.jornadasIndex', compact('jornadas'));
-      }
-      elseif(\Auth::user()->tipo == "comun")
-      {
-        //VISTA USUARIO
-      }
+      //$jor = DB::table('jornadas')->get();
+      //dd($jor);
+      //return $jor;
+      return view('jornadas.jornadasIndex', compact('jornadas'));
     }
 
     /**
@@ -49,7 +42,7 @@ class JornadaController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA index
+        return  redirect()->route('jornadas.index');
       }
     }
 
@@ -81,7 +74,7 @@ class JornadaController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA index
+        return  redirect()->route('jornadas.index');
       }
     }
 
@@ -99,7 +92,7 @@ class JornadaController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA index
+        return  redirect()->route('jornadas.index');
       }
     }
 
@@ -117,7 +110,7 @@ class JornadaController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA index
+        return  redirect()->route('jornadas.index');
       }
     }
 
@@ -144,7 +137,7 @@ class JornadaController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA index
+        return  redirect()->route('jornadas.index');
       }
     }
 
@@ -163,7 +156,7 @@ class JornadaController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA index
+        return  redirect()->route('jornadas.index');
       }
     }
 }

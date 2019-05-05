@@ -21,18 +21,11 @@ class PartidoController extends Controller
      */
     public function index()
     {
-      if (\Auth::user()->tipo == "admin")
-      {
-        $jornadas = Jornada::all();
-        $partidos = Partido::all();
-        $equipos = Equipo::all();
+      $jornadas = Jornada::all();
+      $partidos = Partido::all();
+      $equipos = Equipo::all();
 
-        return view('partidos.partidosIndex', compact('partidos', 'jornadas', 'equipos'));
-      }
-      elseif(\Auth::user()->tipo == "comun")
-      {
-        //VISTA USUARIO
-      }
+      return view('partidos.partidosIndex', compact('partidos', 'jornadas', 'equipos'));
     }
 
     /**
@@ -51,7 +44,7 @@ class PartidoController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA index
+        return redirect()->route('partidos.index');
       }
     }
 
@@ -71,7 +64,7 @@ class PartidoController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA index
+        return redirect()->route('partidos.index');
       }
     }
 
@@ -124,9 +117,8 @@ class PartidoController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA INEDEx
+        return redirect()->route('partidos.index');
       }
-
     }
 
     /**
@@ -145,7 +137,7 @@ class PartidoController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA USUARIO
+        return redirect()->route('partidos.index');
       }
     }
 
@@ -157,17 +149,10 @@ class PartidoController extends Controller
      */
     public function showJorn(Jornada $jornada)
     {
-      if (\Auth::user()->tipo == "admin")
-      {
-        $jornadas = Jornada::all();
-        $partidos = Partido::all();
-        $equipos = Equipo::all();
-        return view('partidos.partidosJornada', compact('partidos', 'jornadas', 'equipos', 'jornada'));
-      }
-      elseif(\Auth::user()->tipo == "comun")
-      {
-        //VISTA USUARIO
-      }
+      $jornadas = Jornada::all();
+      $partidos = Partido::all();
+      $equipos = Equipo::all();
+      return view('partidos.partidosJornada', compact('partidos', 'jornadas', 'equipos', 'jornada'));
     }
 
     /**
@@ -186,7 +171,7 @@ class PartidoController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA index
+        return redirect()->route('partidos.index');
       }
     }
 
@@ -207,7 +192,7 @@ class PartidoController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA index
+        return redirect()->route('partidos.index');
       }
     }
 
@@ -243,7 +228,7 @@ class PartidoController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA index
+        return redirect()->route('partidos.index');
       }
     }
 
@@ -272,7 +257,7 @@ class PartidoController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA index
+        return redirect()->route('partidos.index');
       }
     }
 
@@ -291,7 +276,7 @@ class PartidoController extends Controller
       }
       elseif(\Auth::user()->tipo == "comun")
       {
-        //VISTA index
+        return redirect()->route('partidos.index');
       }
     }
 }

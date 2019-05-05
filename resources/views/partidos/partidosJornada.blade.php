@@ -3,7 +3,9 @@
 @section('content')
     <div class="row justify-content-center" style="padding:50px;">
       <div class="col-8">
-        <a class="btn btn-infobtn-sm" href="{{ route('partidos.createParJorX', $jornada->id) }}">Agregar partido</a>
+        @if(\Auth::user()->tipo == "admin")
+          <a class="btn btn-infobtn-sm" href="{{ route('partidos.createParJorX', $jornada->id) }}">Agregar partido</a>
+        @endif
         <h1>Partidos</h1>
           <div class="card">
           <table class="table table-hover">
@@ -14,7 +16,9 @@
                 <th scope="col">Local</th>
                 <th scope="col"></th>
                 <th scope="col">Visitante</th>
-                <th scope="col">Opciones</th>
+                @if(\Auth::user()->tipo == "admin")
+                  <th scope="col">Opciones</th>
+                @endif
               </tr>
             </thead>
             <tbody>
@@ -38,9 +42,11 @@
                         {{ $par->equipo_visitante == $equipo->id ? "$equipo->nombre" : '' }}
                       @endforeach
                     </td>
-                    <td>
-                      <a href="{{ route('partidos.show', $par->id) }}" class="btn btn-infobtn-sm">Opciones</a>
-                    </td>
+                    @if(\Auth::user()->tipo == "admin")
+                      <td>
+                        <a href="{{ route('partidos.show', $par->id) }}" class="btn btn-infobtn-sm">Opciones</a>
+                      </td>
+                    @endif
                   </tr>
                 @endif
               @endforeach
