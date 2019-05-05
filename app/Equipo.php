@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Equipo extends Model
 {
+    protected $fillable = ['nombre', 'gana', 'pierde', 'empata', 'golFavor', 'golContra', 'difGoles', 'puntos'];
     public $timestamps = false;
 
     /**

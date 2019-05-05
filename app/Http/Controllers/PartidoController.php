@@ -21,11 +21,18 @@ class PartidoController extends Controller
      */
     public function index()
     {
-      $jornadas = Jornada::all();
-      $partidos = Partido::all();
-      $equipos = Equipo::all();
+      if(\Auth::user()->tipo == "admin")
+      {
+        $jornadas = Jornada::all();
+        $partidos = Partido::all();
+        $equipos = Equipo::all();
 
-      return view('partidos.partidosIndex', compact('partidos', 'jornadas', 'equipos'));
+        return view('partidos.partidosIndex', compact('partidos', 'jornadas', 'equipos'));
+      }
+      elseif(\Auth::user()->tipo == "comun")
+      {
+        //return redirect()->route('partidos.index');
+      }
     }
 
     /**
