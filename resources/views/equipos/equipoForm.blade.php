@@ -7,16 +7,8 @@
             <div class="card">
                 <div class="card-header">{{ __('Agregar equipo') }}</div>
                 <div class="card-body">
-                  
-                  @if ($errors->any())
-                    <div class="alert alert-danger">
-                      <ul>
-                        @foreach ($errors->all() as $error)
-                          <li>{{ $error }}</li>
-                        @endforeach
-                      </ul>
-                    </div>
-                  @endif
+
+                  @include('partials.formErrors)
 
                   @if(isset($equipo))
                     <form method="POST" action="{{ route('equipos.update', $equipo->id) }}">

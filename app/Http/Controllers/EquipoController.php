@@ -85,7 +85,11 @@ class EquipoController extends Controller
 
         $eqp->save();
 
-        return redirect()->route('equipos.index');
+        return redirect()->route('equipos.index')
+          ->with([
+              'mensaje' => 'El equipo ha sido creado exitosamente',
+              'alert-class' => 'alert-warning'
+          ]);
       }
       elseif(\Auth::user()->tipo == "comun")
       {
@@ -168,7 +172,11 @@ class EquipoController extends Controller
         //$equipo->puntos = $request->puntos;
 
         $equipo->save();
-        return redirect()->route('equipos.show', $equipo->id);
+        return redirect()->route('equipos.show', $equipo->id)
+          ->with([
+              'mensaje' => 'El equipo ha sido modificado exitosamente',
+              'alert-class' => 'alert-warning'
+          ]);
       }
       elseif(\Auth::user()->tipo == "comun")
       {
@@ -187,7 +195,11 @@ class EquipoController extends Controller
       if (\Auth::user()->tipo == "admin")
       {
         $equipo->delete();
-        return redirect()->route('equipos.index');
+        return redirect()->route('equipos.index')
+          ->with([
+              'mensaje' => 'El equipo ha sido eliminado exitosamente',
+              'alert-class' => 'alert-warning'
+          ]);
       }
       elseif(\Auth::user()->tipo == "comun")
       {

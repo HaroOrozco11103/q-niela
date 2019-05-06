@@ -120,7 +120,11 @@ class PartidoController extends Controller
         $partido = Partido::create($request);
         */
 
-        return redirect()->route('partidos.index');
+        return redirect()->route('partidos.index')
+          ->with([
+              'mensaje' => 'El partido ha sido creado exitosamente',
+              'alert-class' => 'alert-warning'
+          ]);
       }
       elseif(\Auth::user()->tipo == "comun")
       {
@@ -231,7 +235,11 @@ class PartidoController extends Controller
         //$partido->resV = $request->resV;
         $partido->save();
 
-        return redirect()->route('partidos.show', $partido->id);
+        return redirect()->route('partidos.show', $partido->id)
+          ->with([
+              'mensaje' => 'El partido ha sido modificado exitosamente',
+              'alert-class' => 'alert-warning'
+          ]);
       }
       elseif(\Auth::user()->tipo == "comun")
       {
@@ -260,7 +268,11 @@ class PartidoController extends Controller
         $partido->resV = $request->resV;
         $partido->save();
 
-        return redirect()->route('partidos.editRes', $partido->jornada_id);
+        return redirect()->route('partidos.editRes', $partido->jornada_id)
+          ->with([
+              'mensaje' => 'El resultado del partido ha sido actualizado exitosamente',
+              'alert-class' => 'alert-warning'
+          ]);
       }
       elseif(\Auth::user()->tipo == "comun")
       {
@@ -279,7 +291,11 @@ class PartidoController extends Controller
       if (\Auth::user()->tipo == "admin")
       {
         $partido->delete();
-        return redirect()->route('partidos.index');
+        return redirect()->route('partidos.index')
+          ->with([
+              'mensaje' => 'El partido ha sido eliminado exitosamente',
+              'alert-class' => 'alert-warning'
+          ]);
       }
       elseif(\Auth::user()->tipo == "comun")
       {

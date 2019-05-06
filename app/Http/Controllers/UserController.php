@@ -13,7 +13,7 @@ class UserController extends Controller
     {
       //$this->middleware('auth')->except('index');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -88,7 +88,11 @@ class UserController extends Controller
 
         $usr->save();		//guarda la información en la db
 
-        return  redirect()->route('users.index');		//salir y moverse a index por seguridad (en caso de ser usuario comun y no admin)
+        return  redirect()->route('users.index')		//salir y moverse a index por seguridad (en caso de ser usuario comun y no admin)
+          ->with([
+              'mensaje' => 'El usuario ha sido creado exitosamente',
+              'alert-class' => 'alert-warning'
+          ]);
       }
       elseif(\Auth::user()->tipo == "comun")
       {
@@ -164,12 +168,20 @@ class UserController extends Controller
           $user->tipo = $request->input('tipo');
           $user->email = $request->input('email');
           $user->save();
-          return redirect()->route('users.show', $user->id);
+          return redirect()->route('users.show', $user->id)
+            ->with([
+                'mensaje' => 'El usuario ha sido modificado exitosamente',
+                'alert-class' => 'alert-warning'
+            ]);
         }
         elseif(\Auth::user()->tipo == "comun")
         {
           $user->save();
-          return redirect()->route('users.index');
+          return redirect()->route('users.index')
+            ->with([
+                'mensaje' => 'Tu información ha sido actualizada exitosamente',
+                'alert-class' => 'alert-warning'
+            ]);
           //session(['user' => \Auth::user()->id ]);
         }
     }
@@ -191,11 +203,19 @@ class UserController extends Controller
         $user->save();
         if (\Auth::user()->tipo == "admin")
         {
-          return redirect()->route('users.update', $user->id);
+          return redirect()->route('users.update', $user->id)
+            ->with([
+                'mensaje' => 'La contraseña del usuario ha sido modificada exitosamente',
+                'alert-class' => 'alert-warning'
+            ]);
         }
         elseif(\Auth::user()->tipo == "comun")
         {
-          return redirect()->route('users.index');
+          return redirect()->route('users.index')
+            ->with([
+                'mensaje' => 'Tu contraseña ha sido actualizada exitosamente',
+                'alert-class' => 'alert-warning'
+            ]);
         }
     }
 
@@ -210,7 +230,11 @@ class UserController extends Controller
       if (\Auth::user()->tipo == "admin")
       {
         $user->delete();
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')
+          ->with([
+              'mensaje' => 'El usuario ha sido eliminado exitosamente',
+              'alert-class' => 'alert-warning'
+          ]);
       }
       elseif(\Auth::user()->tipo == "comun")
       {

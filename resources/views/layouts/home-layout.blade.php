@@ -25,6 +25,7 @@
   @include('layouts.home-top-bar-layout')
     <!-- Header -->
     <main class="py-4">
+        @include('partials.mensajes')
         @yield('content')
     </main>
     <!-- Page content -->

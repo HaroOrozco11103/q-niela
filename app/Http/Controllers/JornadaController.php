@@ -70,7 +70,11 @@ class JornadaController extends Controller
 
         $jor->save();		//guarda la información en la db
 
-        return  redirect()->route('jornadas.index');		//salir y moverse a index por seguridad (en caso de ser usuario comun y no admin)
+        return  redirect()->route('jornadas.index')		//salir y moverse a index por seguridad (en caso de ser usuario comun y no admin)
+          ->with([
+              'mensaje' => 'La jornada ha sido creada exitosamente',
+              'alert-class' => 'alert-warning'
+          ]);
       }
       elseif(\Auth::user()->tipo == "comun")
       {
@@ -133,7 +137,11 @@ class JornadaController extends Controller
         $jornada->inicio = \Carbon\Carbon::createFromFormat('Y-m-d', $request->input('inicio'))->toDateString();
         $jornada->fin = \Carbon\Carbon::createFromFormat('Y-m-d', $request->input('fin'))->toDateString();
         $jornada->save();
-        return redirect()->route('jornadas.show', $jornada->id);
+        return redirect()->route('jornadas.show', $jornada->id)
+          ->with([
+              'mensaje' => 'La jornada ha sido modificada exitosamente',
+              'alert-class' => 'alert-warning'
+          ]);
       }
       elseif(\Auth::user()->tipo == "comun")
       {
@@ -152,7 +160,11 @@ class JornadaController extends Controller
       if (\Auth::user()->tipo == "admin")
       {
         $jornada->delete();
-        return redirect()->route('jornadas.index');
+        return redirect()->route('jornadas.index')
+          ->with([
+              'mensaje' => 'La jornada ha sido eliminada exitosamente',
+              'alert-class' => 'alert-warning'
+          ]);
       }
       elseif(\Auth::user()->tipo == "comun")
       {
