@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Agregar equipo') }}</div>
                 <div class="card-body">
 
-                  @include('partials.formErrors)
+                  @include('partials.formErrors')
 
                   @if(isset($equipo))
                     <form method="POST" action="{{ route('equipos.update', $equipo->id) }}">

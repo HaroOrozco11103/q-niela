@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Agregar jornada') }}</div>
 
                 <div class="card-body">
-                  @include('partials.formErrors)
+                  @include('partials.formErrors')
 
                   @if(isset($jornada))
                     <form method="POST" action="{{ route('jornadas.update', $jornada->id) }}">
