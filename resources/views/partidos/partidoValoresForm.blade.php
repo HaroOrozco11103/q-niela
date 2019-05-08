@@ -10,7 +10,7 @@
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Número de jornada</th>
+                            <th scope="col">Número de<br>jornada</th>
                             <th scope="col">Local</th>
                             <th scope="col">Visitante</th>
                             <th scope="col">Resultado</th>
@@ -46,7 +46,7 @@
                                             value="{{ $par->resL ?? '' }}" min="0" max="25"> - <input type="number"
                                             class="form-control" name="resV" value="{{ $par->resV ?? '' }}" min="0"
                                             max="25">
-
+                                        <br>
                                         <button type="submit" class="btn btn-primary ml-auto">Aceptar</button>
                                     </form>
                                 </td>

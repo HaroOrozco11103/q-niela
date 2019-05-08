@@ -12,7 +12,7 @@
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Número de jornada</th>
+                        <th scope="col">Número de<br>jornada</th>
                         <th scope="col">Local</th>
                         <th scope="col"></th>
                         <th scope="col">Visitante</th>

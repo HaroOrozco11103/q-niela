@@ -13,8 +13,8 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">Nombre</th>
-                                    <th scope="col">Correo electrónico</th>
-                                    <th scope="col">Nombre de usuario</th>
+                                    <th scope="col">Correo<br>electrónico</th>
+                                    <th scope="col">Nombre<br>de usuario</th>
                                     <th scope="col">Equipo</th>
                                     <th scope="col">Tipo</th>
                                     <th scope="col">Opciones</th>
@@ -40,6 +40,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {{ $users->links() }}
                     </div>
                 </div>
             </div>

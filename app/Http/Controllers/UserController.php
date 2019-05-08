@@ -25,7 +25,8 @@ class UserController extends Controller
       $equipos = Equipo::all();
       if(\Auth::user()->tipo == "admin")
       {
-        $users = User::all();
+        //$users = User::all();
+        $users = User::paginate(10);
         //$usr = user::where('id', '>', '1')->get();
 
         //$usr = DB::table('users')->get();

@@ -23,6 +23,7 @@ class EquipoController extends Controller
     public function index()
     {
       $equipos = Equipo::all();
+      $equipos = $equipos->sortByDesc('puntos');
       if (\Auth::user()->tipo == "admin")
       {
         return view('equipos.equiposIndex', compact('equipos'));

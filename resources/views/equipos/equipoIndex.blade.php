@@ -17,12 +17,12 @@
                                     <thead class="thead-dark">
                                         <tr>
                                             <th scope="col">Nombre</th>
-                                            <th scope="col">Partidos ganados</th>
-                                            <th scope="col">Partidos perdidos</th>
-                                            <th scope="col">Partidos empatados</th>
-                                            <th scope="col">Goles a favor</th>
-                                            <th scope="col">Goles en contra</th>
-                                            <th scope="col">Diferencia de goles</th>
+                                            <th scope="col">Partidos<br>ganados</th>
+                                            <th scope="col">Partidos<br>perdidos</th>
+                                            <th scope="col">Partidos<br>empatados</th>
+                                            <th scope="col">Goles<br>a favor</th>
+                                            <th scope="col">Goles<br>en contra</th>
+                                            <th scope="col">Diferencia<br>de goles</th>
                                             <th scope="col">Puntos</th>
                                         </tr>
                                     </thead>

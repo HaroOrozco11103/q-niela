@@ -12,9 +12,9 @@
                 <table class="table table-hover">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">Número de jornada</th>
-                            <th scope="col">Fecha en que inicia</th>
-                            <th scope="col">Fecha en que termina</th>
+                            <th scope="col">Número de<br>jornada</th>
+                            <th scope="col">Fecha en<br>que inicia</th>
+                            <th scope="col">Fecha en<br>que termina</th>
                             <th scope="col">Partidos</th>
                             @if(\Auth::user()->tipo == "admin")
                             <th scope="col">Opciones</th>
