@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow">
     <div class="card-header">Usuarios
-        <a class="btn btn-outline-info bg-white" style="float:right;" href="{{ route('equipos.create') }}">Agregar usuario</a>
+        <a class="btn btn-outline-info bg-white" style="float:right;" href="{{ route('users.create') }}">Agregar usuario</a>
     </div>
     <div class="table-responsive">
         <table class="table table-hover">

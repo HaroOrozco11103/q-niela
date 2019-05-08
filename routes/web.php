@@ -67,3 +67,5 @@ Route::get('/miembros', 'PaginasController@miembros')->name('miembros');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/informe', 'PaginasController@informe');
