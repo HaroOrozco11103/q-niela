@@ -32,6 +32,7 @@ Route::PATCH('users/cambiar-contraseña/{user}', 'UserController@updatePass')
 //-------------------------------------------------------EQUIPOS-------------------------------------------------------
 //Route::get('/equipo', 'EquipoController@index')->name('equipos.index');
 Route::resource('equipos', 'EquipoController')->middleware('auth');
+
 //-----------------------------------------------------PRONOSTICOS-----------------------------------------------------
 //Route::get('/pronosticos', 'PronosticoController@index')->name('pronosticos.index');
 Route::resource('pronosticos', 'PronosticoController')->middleware('auth');

@@ -25,6 +25,8 @@
         @include('layouts.top-bar')
         <!-- Header -->
         @include('layouts.header-layout')
+        <!-- Agregar Equipo -->
+        @include('layouts.agrega-equipo')
         <!-- Page content -->
         <div class="container-fluid mt--7">
             <main class="py-4">
