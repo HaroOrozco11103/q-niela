@@ -28,8 +28,16 @@
         <!-- Page content -->
         <div class="container-fluid mt--7">
             <main class="py-4">
-                @include('partials.mensajes')
-                @yield('content')
+                <div class="container">
+                    <div class="row justify-content-center pt-6">
+                        <div class="col-11">
+                            <!-- Messages -->
+                            @include('partials.mensajes')
+                            <!-- Content -->
+                            @yield('content')
+                        </div>
+                    </div>
+                </div>
             </main>
         </div>
 
