@@ -19,7 +19,7 @@ Route::get('/', function ()
 Route::get('/inicio', function ()
 {
     return view('inicio');
-});
+})->name('inicio');
 
 //--------------------------------------------------------USERS--------------------------------------------------------
 //Route::get('/usuarios', 'UserController@index')->name('users.index');//->middleware('auth');   //Vreificación de login (retorna a la pagina de log)
@@ -55,6 +55,11 @@ Route::PATCH('/partidos/cambiar-resultados/{partido}', 'PartidoController@update
 //Route::get('/jornadas', 'JornadaController@index')->name('jornadas.index');
 Route::resource('jornadas', 'JornadaController')->middleware('auth');
 
+//------------------------------------------------------JORNADAS-------------------------------------------------------
+Route::get('/informe', 'InformeController@index')->name('informe.index');
+
+Route::post('/informe.enviar', 'InformeController@store')->name('informes.store');
+
 //-------------------------------------------------------PAGINAS-------------------------------------------------------
 Route::get('/informacion', 'PaginasController@info');
 
@@ -67,5 +72,3 @@ Route::get('/miembros', 'PaginasController@miembros')->name('miembros');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/informe', 'PaginasController@informe');

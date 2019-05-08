@@ -28,9 +28,4 @@ class PaginasController extends Controller
     {
       return view('paginas/miembros');
     }
-
-    public function informe()
-    {
-      return view('paginas.informe');
-    }
 }

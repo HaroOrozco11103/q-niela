@@ -7,7 +7,7 @@
         </button>
         <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ asset('inicio') }}">
-            <img src="{{ asset('argon/assets/img/brand/blue.png') }}" class="navbar-brand-img') }}" alt="...">
+            <img src="{{ asset('argon/assets/img/brand/blue.png') }}" class="navbar-brand-img" alt="...">
         </a>
         <!-- User -->
         @include('layouts.user')
@@ -74,7 +74,7 @@
             <hr class="my-3">
             <ul class="navbar-nav mb-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href=" {{ route('informe.index') }}">
                         <i class="ni ni-bulb-61 text-muted"></i> Enviar Informe
                     </a>
                 </li>
