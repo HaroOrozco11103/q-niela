@@ -23,7 +23,7 @@
                 <input type="username" class="form-control" name="inputUsername" placeholder="Nombre de Usuario">
             </div>
             <div class="form-group">
-                <label for="formInforme">Informe</label>
+                <label for="formInforme">Informar</label>
                 <textarea class="form-control" name="formInforme" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-outline-info bg-white">Submit</button>

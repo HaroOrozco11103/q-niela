@@ -74,7 +74,7 @@
             <hr class="my-3">
             <ul class="navbar-nav mb-3">
                 <li class="nav-item">
-                    <a class="nav-link" href=" {{ route('informe.index') }}">
+                    <a class="nav-link" href=" {{ route('informes.index') }}">
                         <i class="ni ni-bulb-61 text-muted"></i> Enviar Informe
                     </a>
                 </li>

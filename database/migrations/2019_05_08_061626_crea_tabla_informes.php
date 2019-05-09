@@ -15,10 +15,10 @@ class CreaTablaInformes extends Migration
     {
         Schema::create('informes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre')->nullable();
+            $table->string('nombre');
             $table->string('email')->nullable();
             $table->string('username')->nullable();
-            $table->string('informe');
+            $table->string('informe', 999);
         });
     }
 

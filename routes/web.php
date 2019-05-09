@@ -55,10 +55,8 @@ Route::PATCH('/partidos/cambiar-resultados/{partido}', 'PartidoController@update
 //Route::get('/jornadas', 'JornadaController@index')->name('jornadas.index');
 Route::resource('jornadas', 'JornadaController')->middleware('auth');
 
-//------------------------------------------------------JORNADAS-------------------------------------------------------
-Route::get('/informe', 'InformeController@index')->name('informe.index');
-
-Route::post('/informe.enviar', 'InformeController@store')->name('informes.store');
+//------------------------------------------------------INFORMES-------------------------------------------------------
+Route::resource('informes', 'InformeController');
 
 //-------------------------------------------------------PAGINAS-------------------------------------------------------
 Route::get('/informacion', 'PaginasController@info');
