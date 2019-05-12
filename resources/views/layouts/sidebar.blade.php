@@ -75,7 +75,15 @@
             <ul class="navbar-nav mb-3">
                 <li class="nav-item">
                     <a class="nav-link" href=" {{ route('informes.index') }}">
+                        @guest
                         <i class="ni ni-bulb-61 text-muted"></i> Enviar Informe
+                        @else
+                        @if(\Auth::user()->tipo == "admin")
+                        <i class="ni ni-bulb-61 text-muted"></i> Leer Informes
+                        @else
+                        <i class="ni ni-bulb-61 text-muted"></i> Enviar Informe
+                        @endif
+                        @endguest
                     </a>
                 </li>
             </ul>

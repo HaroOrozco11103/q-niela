@@ -16,12 +16,9 @@ class PaginasController extends Controller
       return view('paginas.contacto');
     }
 
-    public function bienvenida($nombre, $apellido = null)
+    public function bienvenida()
     {
-      return view('paginas.bienvenida', compact('nombre', 'apellido'))
-      ->with([
-        'nombre_completo' => $nombre . ' ' . $apellido
-      ]);
+      return view('paginas.bienvenida');
     }
 
     public function miembros()

@@ -2,7 +2,12 @@
 
 @section('content')
 <div class="card shadow">
-    <div class="card-header">Enviar Informe</div>
+    <div class="card-header">Enviar Informe
+        <hr class="my-3">
+        Para enviar un informe es necesario que llene el campo de nombre y el de informe. Los campos de email y 
+        username son opcionales. Puede enviar un informe para reportar un problema en el sistema, recuperar su 
+        contraseña, o enviar alguna sugerencia al administrador.
+    </div>
     <div class="card-body">
 
         @include('partials.formErrors')

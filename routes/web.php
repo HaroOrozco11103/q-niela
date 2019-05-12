@@ -13,12 +13,12 @@
 
 Route::get('/', function ()
 {
-    return view('inicio');
+    return view('paginas.inicio');
 });
 
 Route::get('/inicio', function ()
 {
-    return view('inicio');
+    return view('paginas.inicio');
 })->name('inicio');
 
 //--------------------------------------------------------USERS--------------------------------------------------------
@@ -58,12 +58,15 @@ Route::resource('jornadas', 'JornadaController')->middleware('auth');
 //------------------------------------------------------INFORMES-------------------------------------------------------
 Route::resource('informes', 'InformeController');
 
+//-------------------------------------------------------BIENVENIDA-------------------------------------------------------
+
+Route::get('/bienvenida', 'PaginasController@bienvenida');
+
 //-------------------------------------------------------PAGINAS-------------------------------------------------------
 Route::get('/informacion', 'PaginasController@info');
 
 Route::get('/contacto', 'PaginasController@contacto');
 
-Route::get('/bienvenida/{nombre}/{apellido?}', 'PaginasController@bienvenida');
 
 Route::get('/miembros', 'PaginasController@miembros')->name('miembros');
 

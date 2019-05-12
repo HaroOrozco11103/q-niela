@@ -18,6 +18,7 @@ class InformeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
       $informes = Informe::paginate(10);
