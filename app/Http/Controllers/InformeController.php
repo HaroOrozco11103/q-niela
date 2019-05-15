@@ -18,7 +18,7 @@ class InformeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     public function index()
     {
       $informes = Informe::paginate(10);
@@ -27,12 +27,12 @@ class InformeController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     * @param  \App\Informe  $inf
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-      return view('informes.informeForm');
+      return view('informes.informeForm', compact('inf'));
     }
 
     /**
@@ -73,7 +73,7 @@ class InformeController extends Controller
      */
     public function show(Informe $informe)
     {
-        //
+        return view('informes.informeForm', compact('informe'));
     }
 
     /**

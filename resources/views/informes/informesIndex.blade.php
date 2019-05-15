@@ -15,7 +15,7 @@
                           <th scope="col">Correo<br>electrónico</th>
                           <th scope="col">Nombre<br>de usuario</th>
                           <th scope="col">Informe</th>
-                          <th scope="col">Borrar</th>
+                          <th scope="col">Ver detalles</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -27,11 +27,7 @@
                           <td>{{ $inf->username }}</td>
                           <td>{{ $inf->informe }}</td>
                           <td>
-                            <form action="{{ route('informes.destroy', $inf->id) }}" method="POST">
-                                <input type="hidden" name="_method" value="DELETE">
-                                @csrf
-                                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
-                            </form>
+                              <a href="{{ route('informes.show', $inf->id) }}" class="btn btn-sm btn-warning">Editar</a>
                           </td>
                       </tr>
                       @endforeach

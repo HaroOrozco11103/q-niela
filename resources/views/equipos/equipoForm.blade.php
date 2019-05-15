@@ -19,7 +19,7 @@
                     <label class="col-md-4 col-form-label text-md-right">Nombre</label>
                     <div class="col-md-6">
                         <input type="text" class="form-control" name="nombre"
-                            value="{{ $equipo->nombre ?? '' }}{{ old('nombre') }}" placeholder="Nombre del equipo">
+                            value="{{ $equipo->nombre ?? '' }}" placeholder="Nombre del equipo">
                         @if ($errors->has('nombre'))
                         <span class="alert alert-danger">
                             <strong>{{ $errors->first('nombre') }}</strong>
