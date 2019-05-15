@@ -8,13 +8,23 @@
         @if(isset($user))
         <form method="POST" action="{{ route('users.updatePass', $user->id) }}">
             <input type="hidden" name="_method" value="PATCH">
-            @else
-            <a class="btn-outline-info bg-white" href="{{ route('users.create') }}">Registrar</a>
-            @endif
             @csrf
+        @else
+            <a class="btn-outline-info bg-white" href="{{ route('users.create') }}">Registrar</a>
+        @endif
+
+        @if(\Auth::user()->tipo == "comun")
+            <div class="form-group row">
+                <label for="oldPassword" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña anterior') }}</label>
+                <div class="col-md-6">
+                    <input id="oldPassword" type="password" class="form-control" name="oldPassword">
+                    @include('partials.formErrors')
+                </div>
+            </div>
+        @endif
 
             <div class="form-group row">
-                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
+                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña nueva') }}</label>
                 <div class="col-md-6">
                     <input id="password" type="password"
                         class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"
@@ -30,7 +40,7 @@
 
             <div class="form-group row">
                 <label for="password-confirm"
-                    class="col-md-4 col-form-label text-md-right">{{ __('Confirmar Contraseña') }}</label>
+                    class="col-md-4 col-form-label text-md-right">{{ __('Confirmar nueva contraseña') }}</label>
                 <div class="col-md-6">
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
                         required>

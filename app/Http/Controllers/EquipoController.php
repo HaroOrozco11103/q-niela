@@ -6,7 +6,6 @@ use App\Jornada;
 use App\Partido;
 use App\User;
 use App\Equipo;
-use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class EquipoController extends Controller

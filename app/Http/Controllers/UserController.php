@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Equipo;
 use App\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -199,14 +198,24 @@ class UserController extends Controller
      */
     public function updatePass(Request $request, User $user)
       {
-        $request->validate([
-          'password' => 'required|string|min:8|max:30|confirmed',
-        ]);
+        if(\Auth::user()->tipo == "admin")
+        {
+          $request->validate([
+            'password' => 'required|string|min:8|max:30|confirmed',
+          ]);
+        }
+        elseif(\Auth::user()->tipo == "comun")
+        {
+          $request->validate([
+            'password' => 'required|string|min:8|max:30|confirmed',
+            'oldPassword' => 'required|string|max:30',
+          ]);
+        }
 
-        $user->password = Hash::make($request->password);
-        $user->save();
         if (\Auth::user()->tipo == "admin")
         {
+          $user->password = Hash::make($request->password);
+          $user->save();
           return redirect()->route('users.update', $user->id)
             ->with([
                 'mensaje' => 'La contraseña del usuario ha sido modificada exitosamente',
@@ -215,11 +224,24 @@ class UserController extends Controller
         }
         elseif(\Auth::user()->tipo == "comun")
         {
-          return redirect()->route('users.index')
-            ->with([
-                'mensaje' => 'Tu contraseña ha sido actualizada exitosamente',
-                'alert-class' => 'alert-warning'
-            ]);
+          if(Hash::check($request->oldPassword, $user->password))
+          {
+            $user->password = Hash::make($request->password);
+            $user->save();
+            return redirect()->route('users.index')
+              ->with([
+                  'mensaje' => 'Tu contraseña ha sido actualizada exitosamente',
+                  'alert-class' => 'alert-warning'
+              ]);
+          }
+          else
+          {
+              return redirect()->route('users.editPass', $user->id)
+                ->with([
+                    'mensaje' => 'Tu contraseña antigua no ha coincidido con el campo proporcionado',
+                    'alert-class' => 'alert-warning'
+                ]);
+          }
         }
     }
 

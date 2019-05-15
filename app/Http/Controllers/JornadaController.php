@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Partido;
 use App\Jornada;
-use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class JornadaController extends Controller
