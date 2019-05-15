@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Partido;
 use App\Jornada;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class JornadaController extends Controller
@@ -129,8 +130,9 @@ class JornadaController extends Controller
     {
       if (\Auth::user()->tipo == "admin")
       {
+        $jornadaId = $jornada->id;
         $request->validate([
-          'numero' => 'required|integer|max:25|unique:jornadas',
+          'numero' => 'required|integer|max:25|unique:jornadas,numero,'.$jornadaId,
         ]);
 
         $jornada->numero = $request->numero;

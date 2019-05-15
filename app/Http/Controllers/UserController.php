@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Equipo;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -153,10 +154,11 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
       {
+        $userId = $user->id;
         $request->validate([
           'nombre' => 'required|string|max:255',
-          'username' => 'required|string|min:5|max:25',
-          'email' => 'required|string|email|max:255',
+          'username' => 'required|string|min:5|max:25|unique:users,username,'.$userId,
+          'email' => 'required|string|email|max:255|unique:users,email,'.$userId,
           //'password' => 'required|string|min:8|max:30|confirmed',
           'equipo_id' => 'nullable',
         ]);

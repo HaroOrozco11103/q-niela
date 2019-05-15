@@ -6,6 +6,7 @@ use App\Jornada;
 use App\Partido;
 use App\User;
 use App\Equipo;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class EquipoController extends Controller
@@ -145,8 +146,9 @@ class EquipoController extends Controller
     {
       if (\Auth::user()->tipo == "admin")
       {
+        $equipoId = $equipo->id;
         $request->validate([
-          'nombre' => 'required|string|min:3|max:255|unique:equipos',
+          'nombre' => 'required|string|min:3|max:255|unique:equipos,nombre,'.$equipoId,
           'gana' => 'integer|max:17',
           'pierde' => 'integer|max:17',
           'empata' => 'integer|max:17',
