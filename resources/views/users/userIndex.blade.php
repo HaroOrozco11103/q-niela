@@ -25,7 +25,10 @@
                         @endforeach
                     </td>
                     <th>
-                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                        {{-- Aplica UserPolicy@update --}}
+                        @can('update', $user)
+                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                        @endcan
                     </th>
                 </tr>
             </tbody>

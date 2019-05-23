@@ -78,16 +78,16 @@
             @elseif(\Auth::user()->tipo == "comun")
                 <div class="form-group">
                     <label for="inputName">Nombre</label>
-                    <input type="nombre" class="form-control" name="inputName" placeholder="Nombre">
+                    <input type="nombre" class="form-control" name="inputName" value="{{ \Auth::user()->nombre ?? '' }}">
                 </div>
                 <div class="form-group">
                     <label for="inputEmail">Correo Electronico</label>
                     <input type="email" class="form-control" name="inputEmail" aria-describedby="emailHelp"
-                        placeholder="Correo Electronico">
+                        value="{{ \Auth::user()->email ?? '' }}">
                 </div>
                 <div class="form-group">
                     <label for="inputUsername">Nombre de Usuario</label>
-                    <input type="username" class="form-control" name="inputUsername" placeholder="Nombre de Usuario">
+                    <input type="username" class="form-control" name="inputUsername" value="{{ \Auth::user()->username ?? '' }}">
                 </div>
                 <div class="form-group">
                     <label for="formInforme">Informar</label>

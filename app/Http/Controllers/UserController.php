@@ -129,6 +129,12 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        //Aplica UserPolicy@update
+        if(\Auth::user()->cannot('update', $user))
+        {
+          return redirect()->route('users.edit', \Auth::user()->id);
+        }
+
         $equipos = Equipo::all();
         return view('users.userForm', compact('user', 'equipos'));
     }
@@ -179,6 +185,12 @@ class UserController extends Controller
         }
         elseif(\Auth::user()->tipo == "comun")
         {
+          //Aplica UserPolicy@update
+          if(\Auth::user()->cannot('update', $user))
+          {
+            return redirect()->route('users.edit', \Auth::user()->id);
+          }
+
           $user->save();
           return redirect()->route('users.index')
             ->with([
