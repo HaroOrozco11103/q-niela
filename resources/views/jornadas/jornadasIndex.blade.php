@@ -23,6 +23,11 @@
                 </tr>
             </thead>
             <tbody>
+              @if(count($jornadas)==0)
+                <div class="alert alert-dismissible text-center alert-dismissible" style="background-color:#ff9d16;" role="alert">
+                  Aún no existen jornadas añadidas.
+                </div>
+              @else
                 @foreach($jornadas as $jor)
                 <tr>
                     <td>{{ $jor->numero }}</td>
@@ -45,6 +50,7 @@
                     </td>
                 </tr>
                 @endforeach
+              @endif
             </tbody>
         </table>
     </div>

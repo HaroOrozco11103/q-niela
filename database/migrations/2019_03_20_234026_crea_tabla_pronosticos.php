@@ -25,10 +25,10 @@ class CreaTablaPronosticos extends Migration
         });
 
         Schema::create('partido_pronostico', function (Blueprint $table) {
-            $table->unsignedInteger('pronostico_id');
             $table->unsignedInteger('partido_id');
+            $table->unsignedInteger('pronostico_id');
             $table->string('prediccion');
-            $table->boolean('acierto');
+            $table->boolean('acierto')->default(false);
 
             $table->foreign('pronostico_id')->references('id')->on('pronosticos');
             $table->foreign('partido_id')->references('id')->on('partidos');

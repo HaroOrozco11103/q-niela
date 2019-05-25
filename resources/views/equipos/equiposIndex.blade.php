@@ -20,21 +20,28 @@
                     <th scope="col">Opciones</th>
                 </tr>
             </thead>
-            @foreach($equipos as $eqp)
-            <tr>
-                <td>{{ $eqp->nombre }}</td>
-                <td>{{ $eqp->gana }}</td>
-                <td>{{ $eqp->pierde }}</td>
-                <td>{{ $eqp->empata }}</td>
-                <td>{{ $eqp->golFavor }}</td>
-                <td>{{ $eqp->golContra }}</td>
-                <td>{{ $eqp->difGoles }}</td>
-                <td>{{ $eqp->puntos }}</td>
-                <td>
-                    <a href="{{ route('equipos.show', $eqp->id) }}" class="btn-outline-info bg-white">Opciones</a>
-                </td>
-            </tr>
-            @endforeach
+            <tbody>
+              @if(count($equipos)==0)
+                <div class="alert alert-dismissible text-center alert-dismissible" style="background-color:#ff9d16;" role="alert">
+                  Aún no existen equipos añadidos.
+                </div>
+              @else
+                @foreach($equipos as $eqp)
+                <tr>
+                    <td>{{ $eqp->nombre }}</td>
+                    <td>{{ $eqp->gana }}</td>
+                    <td>{{ $eqp->pierde }}</td>
+                    <td>{{ $eqp->empata }}</td>
+                    <td>{{ $eqp->golFavor }}</td>
+                    <td>{{ $eqp->golContra }}</td>
+                    <td>{{ $eqp->difGoles }}</td>
+                    <td>{{ $eqp->puntos }}</td>
+                    <td>
+                        <a href="{{ route('equipos.show', $eqp->id) }}" class="btn-outline-info bg-white">Opciones</a>
+                    </td>
+                </tr>
+                @endforeach
+              @endif
             </tbody>
         </table>
     </div>

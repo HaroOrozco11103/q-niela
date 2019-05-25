@@ -22,6 +22,11 @@
                 </tr>
             </thead>
             <tbody>
+              @if(count($partidos)==0)
+                <div class="alert alert-dismissible text-center alert-dismissible" style="background-color:#ff9d16;" role="alert">
+                  Aún no existen partidos añadidos.
+                </div>
+              @else
                 @foreach($partidos as $par)
                 @if($jornada->id == $par->jornada_id)
                 <tr>
@@ -50,6 +55,7 @@
                 </tr>
                 @endif
                 @endforeach
+              @endif
             </tbody>
         </table>
     </div>

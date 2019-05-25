@@ -25,6 +25,11 @@
                                 </tr>
                             </thead>
                             <tbody>
+                              @if(count($equipos)==0)
+                                <div class="alert alert-dismissible text-center alert-dismissible" style="background-color:#ff9d16;" role="alert">
+                                  Aún no existen equipos añadidos.
+                                </div>
+                              @else
                                 @foreach($equipos as $eqp)
                                 <tr>
                                     <td>{{ $eqp->nombre }}</td>
@@ -37,6 +42,7 @@
                                     <td>{{ $eqp->puntos }}</td>
                                 </tr>
                                 @endforeach
+                              @endif
                             </tbody>
                         </table>
                     </div>

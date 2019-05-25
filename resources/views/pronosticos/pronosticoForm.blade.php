@@ -53,7 +53,44 @@
                 <div class="form-group row">
                     <label class="col-md-4 col-form-label text-md-right">Partidos</label>
                     <div class="col-md-6">
-                        //Tabla con partidos de la jornada
+                      <div class="table-responsive">
+                          <table class="table table-hover">
+                              <thead class="thead-dark">
+                                  <tr>
+                                    <th scope="col">ID de<br>partido</th>
+                                    <th scope="col">Local</th>
+                                    <th scope="col"></th>
+                                    <th scope="col">Visitante</th>
+                                    <th scope="col">Predicción</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  @foreach($partidos as $par)
+                                    @if($jornada->id == $par->jornada_id)
+                                      <tr>
+                                        <td>
+                                          <input type="text" class="form-control" name="partidos_id[]" value="{{ $par->id ?? '' }}" required multiple readonly>
+                                        </td>
+                                        <td>
+                                          @foreach($equipos as $equipo)
+                                            {{ $par->equipo_local == $equipo->id ? "$equipo->nombre" : '' }}
+                                          @endforeach
+                                        </td>
+                                        <td>{{ $par->resL }} - {{ $par->resV }}</td>
+                                        <td>
+                                          @foreach($equipos as $equipo)
+                                            {{ $par->equipo_visitante == $equipo->id ? "$equipo->nombre" : '' }}
+                                          @endforeach
+                                        </td>
+                                        <td>
+                                          <input type="text" class="form-control" name="prediccions[]" required multiple>
+                                        </td>
+                                      </tr>
+                                    @endif
+                                  @endforeach
+                              </tbody>
+                          </table>
+                      </div>
                     </div>
                 </div>
                 <div class="form-group row mb-0">

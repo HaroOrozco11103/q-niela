@@ -19,6 +19,11 @@
                       </tr>
                   </thead>
                   <tbody>
+                    @if(count($informes)==0)
+                      <div class="alert alert-dismissible text-center alert-dismissible" style="background-color:#ff9d16;" role="alert">
+                        Ya no existen informes.
+                      </div>
+                    @else
                       @foreach($informes as $inf)
                       <tr>
                           <td>{{ $inf->id }}</td>
@@ -31,6 +36,7 @@
                           </td>
                       </tr>
                       @endforeach
+                    @endif
                   </tbody>
               </table>
               {{ $informes->links() }}
