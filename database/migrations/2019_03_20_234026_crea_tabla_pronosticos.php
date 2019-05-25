@@ -15,11 +15,23 @@ class CreaTablaPronosticos extends Migration
     {
         Schema::create('pronosticos', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('apodo');
             $table->unsignedInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedInteger('jornada_id')->unique();
-            $table->foreign('jornada_id')->references('id')->on('jornadas');
+            $table->unsignedInteger('jornada_id');
             $table->integer('totalAciertos');
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('jornada_id')->references('id')->on('jornadas');
+        });
+
+        Schema::create('partido_pronostico', function (Blueprint $table) {
+            $table->unsignedInteger('pronostico_id');
+            $table->unsignedInteger('partido_id');
+            $table->string('prediccion');
+            $table->boolean('acierto');
+
+            $table->foreign('pronostico_id')->references('id')->on('pronosticos');
+            $table->foreign('partido_id')->references('id')->on('partidos');
         });
     }
 
@@ -30,6 +42,7 @@ class CreaTablaPronosticos extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('partido_pronostico');
         Schema::dropIfExists('pronosticos');
     }
 }

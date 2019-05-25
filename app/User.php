@@ -2,12 +2,17 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    use SoftDeletes;
+
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
     //public $timestamps = false;
       //protected $table = 'nombre'; //relaciona modelo con esa tabla por si la clase se llama diferente en plural o algo así
     use Notifiable;
@@ -46,5 +51,14 @@ class User extends Authenticatable
     public function equipo()
     {
         return $this->belongsTo(Equipo::class);
+    }
+
+    /**
+     * Relación hacia muchos pronosticos
+     * @return type
+     */
+    public function pronostico()
+    {
+        return $this->hasMany('App\Pronostico');
     }
 }

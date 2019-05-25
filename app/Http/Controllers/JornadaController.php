@@ -132,6 +132,8 @@ class JornadaController extends Controller
         $jornadaId = $jornada->id;
         $request->validate([
           'numero' => 'required|integer|max:25|unique:jornadas,numero,'.$jornadaId,
+          'inicio' => 'required',
+          'fin' => 'required'
         ]);
 
         $jornada->numero = $request->numero;

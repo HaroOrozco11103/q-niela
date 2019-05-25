@@ -35,4 +35,13 @@ class Partido extends Model
     {
         return $this->belongsTo(Jornada::class);
     }
+
+    /**
+     * Establece relación hacia muchos pronosticos
+     * @return type
+     */
+    public function pronosticos()
+    {
+        return $this->belongsToMany(Pronostico::class);
+    }
 }

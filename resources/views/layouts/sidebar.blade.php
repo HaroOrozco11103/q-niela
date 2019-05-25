@@ -47,12 +47,28 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('users.index') }}">
+                      @guest
                         <i class="ni ni-single-02 text-yellow"></i> Perfil
+                      @else
+                        @if(\Auth::user()->tipo == "admin")
+                          <i class="ni ni-single-02 text-yellow"></i> Usuarios
+                        @else
+                          <i class="ni ni-single-02 text-yellow"></i> Mi Perfil
+                        @endif
+                      @endguest
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('equipos.index') }}">
-                        <i class="ni ni-planet text-blue"></i> Equipos
+                      @guest
+                        <i class="ni ni-planet text-blue"></i> Mi Equipo
+                      @else
+                        @if(\Auth::user()->tipo == "admin")
+                            <i class="ni ni-planet text-blue"></i> Equipos
+                        @else
+                            <i class="ni ni-planet text-blue"></i> Mi Equipo
+                        @endif
+                      @endguest
                     </a>
                 </li>
                 <li class="nav-item">
@@ -61,13 +77,29 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ asset('pronosticos.index')}}">
-                        <i class="ni ni-chart-bar-32 text-pink"></i>Pronosticos
+                    <a class="nav-link" href="{{ route('pronosticos.index') }}">
+                      @guest
+                        <i class="ni ni-chart-bar-32 text-pink"></i>Mis pronosticos
+                      @else
+                          @if(\Auth::user()->tipo == "admin")
+                            <i class="ni ni-chart-bar-32 text-pink"></i>Pronosticos
+                          @else
+                            <i class="ni ni-chart-bar-32 text-pink"></i>Mis pronosticos
+                          @endif
+                      @endguest
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('partidos.index') }}">
+                      @guest
                         <i class="ni ni-bullet-list-67 text-green"></i> Resultados
+                      @else
+                          @if(\Auth::user()->tipo == "admin")
+                            <i class="ni ni-bullet-list-67 text-green"></i> Partidos
+                          @else
+                            <i class="ni ni-bullet-list-67 text-green"></i> Resultados
+                          @endif
+                      @endguest
                     </a>
                 </li>
             </ul>
@@ -77,7 +109,7 @@
                     <a class="nav-link" href=" {{ route('informes.index') }}">
                         @guest
                           <i class="ni ni-bulb-61 text-muted"></i> Enviar Informe
-                          @else
+                        @else
                             @if(\Auth::user()->tipo == "admin")
                               <i class="ni ni-bulb-61 text-muted"></i> Leer Informes
                             @else

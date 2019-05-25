@@ -16,10 +16,9 @@
                     <th scope="col">Fecha en<br>que inicia</th>
                     <th scope="col">Fecha en<br>que termina</th>
                     <th scope="col">Partidos</th>
+                    <th scope="col">Pronosticos</th>
                     @if(\Auth::user()->tipo == "admin")
                     <th scope="col">Opciones</th>
-                    @elseif(\Auth::user()->tipo == "comun")
-                    <th scope="col">Pronosticos</th>
                     @endif
                 </tr>
             </thead>
@@ -27,17 +26,21 @@
                 @foreach($jornadas as $jor)
                 <tr>
                     <td>{{ $jor->numero }}</td>
-                    <td>{{ $jor->inicio }}</td>
-                    <td>{{ $jor->fin }}</td>
+                    <td>{{ $jor->inicio->format('d/m/Y') }}</td>
+                    <td>{{ $jor->fin->format('d/m/Y') }}</td>
                     <td>
-                        <a href="{{ route('partidos.showJorn', $jor->id) }}" class="btn-outline-info bg-white">Partidos
-                            J{{$jor->numero}}</a>
+                        <a href="{{ route('partidos.showJorn', $jor->id) }}" class="btn-outline-info bg-white">
+                          Partidos J{{ $jor->numero }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ route('pronosticos.showJorn', $jor->id) }}" class="btn-outline-info bg-white">
+                          Pronosticos J{{ $jor->numero }}
+                        </a>
                     </td>
                     <td>
                         @if(\Auth::user()->tipo == "admin")
                         <a href="{{ route('jornadas.show', $jor->id) }}" class="btn-outline-info bg-white">Opciones</a>
-                        @elseif(\Auth::user()->tipo == "comun")
-                        <a href="" class="btn-outline-info bg-white">Pronosticos de esta jornada</a>
                         @endif
                     </td>
                 </tr>

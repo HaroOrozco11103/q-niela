@@ -47,7 +47,7 @@ class PartidoController extends Controller
       {
         $jornadas = Jornada::all();
         $equipos = Equipo::all();
-        return view('partidos.partidoForm', compact('jornadas', 'equipos',  'jornada'));
+        return view('partidos.partidoForm', compact('jornadas', 'equipos', 'jornada'));
       }
       elseif(\Auth::user()->tipo == "comun")
       {

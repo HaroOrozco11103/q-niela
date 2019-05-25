@@ -25,7 +25,8 @@ class CreateUsersTable extends Migration
           $table->string('tipo', 30)->default("comun");
           $table->rememberToken();
           $table->timestamps();       //crea dos campos que registran cuando fue creado y cuando se actualizó
-        }); 
+          $table->softDeletes();
+        });
     }
 
     /**

@@ -19,8 +19,8 @@
                 <tr>
                     <td>{{ $jornada->id }}</td>
                     <td>{{ $jornada->numero }}</td>
-                    <td>{{ $jornada->inicio }}</td>
-                    <td>{{ $jornada->fin }}</td>
+                    <td>{{ $jornada->inicio->format('d/m/Y') }}</td>
+                    <td>{{ $jornada->fin->format('d/m/Y') }}</td>
                     <td>
                         <a href="{{ route('jornadas.edit', $jornada->id) }}" class="btn btn-sm btn-warning">Editar</a>
                     </td>

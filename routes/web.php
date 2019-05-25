@@ -36,6 +36,8 @@ Route::resource('equipos', 'EquipoController')->middleware('auth');
 //-----------------------------------------------------PRONOSTICOS-----------------------------------------------------
 //Route::get('/pronosticos', 'PronosticoController@index')->name('pronosticos.index');
 Route::resource('pronosticos', 'PronosticoController')->middleware('auth');
+Route::get('pronosticos/pronosticos-por-jornada/{jornada}', 'PronosticoController@showJorn')
+    ->name('pronosticos.showJorn')->middleware('auth');
 
 //-------------------------------------------------------PARTIDOS------------------------------------------------------
 //Route::get('/resultados', 'PartidoController@index')->name('partidos.index');
