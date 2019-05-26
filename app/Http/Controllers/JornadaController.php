@@ -10,7 +10,7 @@ class JornadaController extends Controller
 {
     public function __construct()
     {
-      $this->middleware('admin')->except('index');
+      $this->middleware('admin')->except('index', 'index2');
     }
 
     /**
@@ -21,12 +21,10 @@ class JornadaController extends Controller
     public function index()
     {
       $jornadas = Jornada::all();
-      //$jor = Jornada::where('id', '>', '1')->get();
+      $jornadasFin = Jornada::terminada()->get();
 
-      //$jor = DB::table('jornadas')->get();
-      //dd($jor);
-      //return $jor;
-      return view('jornadas.jornadasIndex', compact('jornadas'));
+      //$jor = Jornada::where('id', '>', '1')->get();
+      return view('jornadas.jornadasIndex', compact('jornadas', 'jornadasFin'));
     }
 
     /**

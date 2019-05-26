@@ -101,26 +101,29 @@
         </thead>
         <tbody>
             @foreach($partidos as $par)
-            @if($par->equipo_local == $eqp->id or $par->equipo_visitante == $eqp->id)
-            <tr>
-                <td>
-                    @foreach($jornadas as $jor)
-                    {{ $par->jornada_id == $jor->id ? "$jor->numero" : '' }}
-                    @endforeach
-                </td>
-                <td>
-                    @foreach($equipos as $equipo)
-                    {{ $par->equipo_local == $equipo->id ? "$equipo->nombre" : '' }}
-                    @endforeach
-                </td>
-                <td>{{ $par->resL }} - {{ $par->resV }}</td>
-                <td>
-                    @foreach($equipos as $equipo)
-                    {{ $par->equipo_visitante == $equipo->id ? "$equipo->nombre" : '' }}
-                    @endforeach
-                </td>
-            </tr>
-            @endif
+              @if($par->equipo_local == $eqp->id or $par->equipo_visitante == $eqp->id)
+                <tr>
+                    <td>
+                        @foreach($jornadas as $jor)
+                          {{ $par->jornada_id == $jor->id ? "$jor->numero" : '' }}
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach($equipos as $equipo)
+                          {{ $par->equipo_local == $equipo->id ? "$equipo->nombre" : '' }}
+                        @endforeach
+                    </td>
+                    <td>{{ $par->resL }} - {{ $par->resV }}</td>
+                    <td>
+                        @foreach($equipos as $equipo)
+                          {{ $par->equipo_visitante == $equipo->id ? "$equipo->nombre" : '' }}
+                        @endforeach
+                    </td>
+                </tr>
+                @if($par->jornada_id == $jor->id)
+                  <?php break; ?>
+                @endif
+              @endif
             @endforeach
         </tbody>
     </table>

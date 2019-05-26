@@ -28,6 +28,8 @@ Route::get('users/contrasena/{user}', 'UserController@editPass')
 ->name('users.editPass');
 Route::PATCH('users/cambiar-contraseña/{user}', 'UserController@updatePass')
 ->name('users.updatePass');
+Route::PATCH('users/inhabilitar/{user}', 'UserController@softDelete')
+->name('users.softDelete');
 
 //-------------------------------------------------------EQUIPOS-------------------------------------------------------
 //Route::get('/equipo', 'EquipoController@index')->name('equipos.index');

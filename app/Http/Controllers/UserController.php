@@ -12,7 +12,7 @@ class UserController extends Controller
     public function __construct()
     {
       $this->middleware('auth');
-      $this->middleware('admin')->only('create', 'store', 'show', 'destroy');
+      $this->middleware('admin')->only('create', 'store', 'show', 'softDelete', 'destroy');
     }
 
     /**
@@ -130,7 +130,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //Aplica UserPolicy@update
-        if(\Auth::user()->cannot('update', $user))
+        if(\Auth::user()->tipo == "comun" && \Auth::user()->cannot('update', $user))
         {
           return redirect()->route('users.edit', \Auth::user()->id);
         }
@@ -209,7 +209,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function updatePass(Request $request, User $user)
-      {
+    {
         if(\Auth::user()->tipo == "admin")
         {
           $request->validate([
@@ -255,6 +255,23 @@ class UserController extends Controller
                 ]);
           }
         }
+    }
+
+    /**
+     * Soft delete
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function softDelete(User $user)
+    {
+      $user->deleted_at = \Carbon\Carbon::now()->toDateTimeString();
+      $user->save();
+      return redirect()->route('users.index')
+        ->with([
+          'mensaje' => 'El usuario ha sido inhabilitado',
+          'alert-class' => 'alert-warning'
+        ]);
     }
 
     /**

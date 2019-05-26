@@ -83,7 +83,11 @@
                                           @endforeach
                                         </td>
                                         <td>
-                                          <input type="text" class="form-control" name="prediccions[]" required multiple>
+                                          <select name="prediccions[]" class="form-control">
+                                              <option value = "G">G</option>
+                                              <option value = "E">E</option>
+                                              <option value = "P">P</option>
+                                          </select>
                                         </td>
                                       </tr>
                                     @endif

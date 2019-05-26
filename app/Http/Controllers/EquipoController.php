@@ -31,7 +31,8 @@ class EquipoController extends Controller
       elseif(\Auth::user()->tipo == "comun")
       {
         $partidos = Partido::all();
-        $jornadas = Jornada::all();
+        //$jornadas = Jornada::all();
+        $jornadas = Jornada::terminada()->get();
         return view('equipos.equipoIndex', compact('equipos', 'partidos', 'jornadas'));
       }
     }

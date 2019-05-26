@@ -12,7 +12,7 @@
         @if(isset($user))
         <form method="POST" action="{{ route('users.update', $user->id) }}">
             <input type="hidden" name="_method" value="PATCH">
-            @else
+        @else
             <form method="POST" action="{{ route('users.store') }}">
                 @endif
                 @csrf
@@ -133,9 +133,21 @@
             </button>
         </div>
     </div>
-
     </form>
+    <br>
+    <div class="form-group row mb-0">
+        <div class="col-md-6 offset-md-4">
+            @if(isset($user) && \Auth::user()->tipo == "admin")
+                <form method="POST" action="{{ route('users.softDelete', $user->id) }}">
+                    <input type="hidden" name="_method" value="PATCH">
+                    @csrf
+                    <button type="submit" class="btn btn-outline-primary">
+                        Inhabilitar
+                    </button>
+                </form>
+            @endif
+        </div>
+    </div>
 </div>
-
 </div>
 @endsection
