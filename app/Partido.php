@@ -42,6 +42,6 @@ class Partido extends Model
      */
     public function pronosticos()
     {
-        return $this->belongsToMany(Pronostico::class);
+        return $this->belongsToMany(Pronostico::class)->withPivot('prediccion', 'acierto');
     }
 }

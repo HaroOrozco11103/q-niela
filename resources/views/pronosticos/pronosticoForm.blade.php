@@ -16,18 +16,28 @@
                 <div class="form-group row">
                     <label class="col-md-4 col-form-label text-md-right">Jornada</label>
                     <div class="col-md-6">
+                      @if(isset($pronostico))
+                        @foreach($jornadas as $jornada)
+                          @if($jornada->id == $pronostico->jornada_id)
+                            <input type="text" class="form-control" name="jornada_id" value="{{ $jornada->numero}}" required readonly>
+                          @endif
+                        @endforeach
+                      @else
                         <select name="jornada_id" class="form-control">
                             @if($jornada->id != null)
-                            <option value="{{ $jornada->id }}" {{ $jornada->id != null ? 'selected' : '' }}>
-                                {{ $jornada->numero }}</option>
+                              <option value="{{ $jornada->id }}" {{ $jornada->id != null ? 'selected' : '' }}>
+                                  {{ $jornada->numero }}
+                              </option>
                             @else
                               @foreach($jornadas as $jornada)
-                              <option value="{{ $jornada->id }}"
-                                  {{ isset($pronostico) && $pronostico->jornada_id == $jornada->id ? 'selected' : '' }}>
-                                  {{ $jornada->numero }}</option>
+                                <option value="{{ $jornada->id }}"
+                                    {{ isset($pronostico) && $pronostico->jornada_id == $jornada->id ? 'selected' : '' }}>
+                                    {{ $jornada->numero }}
+                                </option>
                               @endforeach
                             @endif
                         </select>
+                      @endif
                     </div>
                 </div>
                 <div class="form-group row">
@@ -42,9 +52,8 @@
                         <select name="user_id" class="form-control">
                             <option value=>0 - Ninguno</option>
                             @foreach($users as $usr)
-                              <option value="{{ $usr->id }}"
-                                  {{ isset($pronostico) && $pronostico->user_id == $usr->id ? 'selected' : '' }}>
-                                  {{ $usr->id }} - {{ $usr->nombre }} - {{ $usr->username }} - {{ $usr->email }}
+                              <option value="{{ $usr->id }}" {{ isset($pronostico) && $pronostico->user_id == $usr->id ? 'selected' : '' }}>
+                                  {{ $usr->datos_user }}
                               </option>
                             @endforeach
                         </select>
@@ -65,6 +74,35 @@
                                   </tr>
                               </thead>
                               <tbody>
+                                @if(isset($pronostico))
+                                  @foreach($partidos as $par)
+                                    @if($pronostico->jornada_id == $par->jornada_id)
+                                      <tr>
+                                        <td>
+                                          <input type="text" class="form-control" name="partidos_id[]" value="{{ $par->id ?? '' }}" required multiple readonly>
+                                        </td>
+                                        <td>
+                                          @foreach($equipos as $equipo)
+                                            {{ $par->equipo_local == $equipo->id ? "$equipo->nombre" : '' }}
+                                          @endforeach
+                                        </td>
+                                        <td>{{ $par->resL }} - {{ $par->resV }}</td>
+                                        <td>
+                                          @foreach($equipos as $equipo)
+                                            {{ $par->equipo_visitante == $equipo->id ? "$equipo->nombre" : '' }}
+                                          @endforeach
+                                        </td>
+                                        <td>
+                                          <select name="prediccions[]" class="form-control">
+                                              <option value = "G">G</option>
+                                              <option value = "E">E</option>
+                                              <option value = "P">P</option>
+                                          </select>
+                                        </td>
+                                      </tr>
+                                    @endif
+                                  @endforeach
+                                @else
                                   @foreach($partidos as $par)
                                     @if($jornada->id == $par->jornada_id)
                                       <tr>
@@ -92,6 +130,7 @@
                                       </tr>
                                     @endif
                                   @endforeach
+                                @endif
                               </tbody>
                           </table>
                       </div>

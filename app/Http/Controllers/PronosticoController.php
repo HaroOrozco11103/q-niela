@@ -73,7 +73,15 @@ class PronosticoController extends Controller
         //dd($request->prediccions);
         $pronostico = Pronostico::create($request->except('partidos_id', 'prediccions'));
 
-        $pronostico->partidos()->attach($request->partidos_id,  ['prediccion' => $request->prediccions]);
+        $partidos_id = $request->partidos_id; //Pasamos el valor a una variable
+        //Dado que recibimos un array, debemos recorrer el array de los partidos y predicciones
+        foreach($partidos_id as $key => $partidoId)
+        {
+            //$key tendrá valores 0, 1, 2, ... según el número de partidos
+            $pronostico->partidos()->attach($partidoId,  ['prediccion' => $request->prediccions[$key]]);
+        }
+     		//Aquí estbas recibiendo $request->partidos_id pero attach espera un entero, y tu le pasas un arreglo, por eso fallaba
+        //$pronostico->partidos()->attach($request->partidos_id,  ['prediccion' => $request->prediccions]);
         //$pronostico->partidos()->save($request->partidos_id, ['prediccion' => $request->prediccions]);
 
         return redirect()->route('pronosticos.index')
@@ -91,14 +99,12 @@ class PronosticoController extends Controller
      */
     public function show(Pronostico $pronostico)
     {
-      if(\Auth::user()->tipo == "admin")
-      {
-        //
-      }
-      elseif(\Auth::user()->tipo == "comun")
-      {
-        //
-      }
+      $jornadas = Jornada::all();
+      $pronosticos = Pronostico::all();
+      $equipos = Equipo::all();
+      $partidos = Partido::all();
+      $users = User::all();
+      return view('pronosticos.pronosticoShow', compact('jornadas', 'pronostico', 'pronosticos', 'equipos', 'partidos', 'users'));
     }
 
     /**
@@ -111,7 +117,10 @@ class PronosticoController extends Controller
     {
       $jornadas = Jornada::all();
       $pronosticos = Pronostico::all();
-      return view('pronosticos.pronosticosJornada', compact('jornadas', 'jornada', 'pronosticos'));
+      $equipos = Equipo::all();
+      $partidos = Partido::all();
+      $users = User::all();
+      return view('pronosticos.pronosticosJornada', compact('jornadas', 'jornada', 'pronosticos', 'equipos', 'partidos', 'users'));
     }
 
     /**
@@ -120,9 +129,13 @@ class PronosticoController extends Controller
      * @param  \App\Pronostico  $pronostico
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pronostico $pronostico)
+    public function edit(Pronostico $pronostico, Jornada $jornada)
     {
-        //
+      $jornadas = Jornada::all();
+      $users = User::all();
+      $partidos = Partido::all();
+      $equipos = Equipo::all();
+      return view('pronosticos.pronosticoForm', compact('jornadas', 'jornada', 'users', 'partidos', 'equipos', 'pronostico'));
     }
 
     /**
@@ -134,7 +147,15 @@ class PronosticoController extends Controller
      */
     public function update(Request $request, Pronostico $pronostico)
     {
-        //
+        $pronostico->update($request->except('partidos_id', 'prediccions'));
+        //Sincroniza los partidos relacionados con el pronostico
+        $pronostico->partidos()->sync($request->partidos_id);
+
+        return redirect()->route('pronosticos.index')
+        ->with([
+             'mensaje' => 'El pronóstico ha sido modificado exitosamente',
+             'alert-class' => 'alert-warning'
+         ]);
     }
 
     /**
@@ -145,6 +166,13 @@ class PronosticoController extends Controller
      */
     public function destroy(Pronostico $pronostico)
     {
-        //
+        //Elimina la relación entre documento y funcionarios.
+        $pronostico->partidos()->detach();
+        $pronostico->delete();
+        return redirect()->route('pronosticos.index')
+          ->with([
+              'mensaje' => 'El pronóstico ha sido eliminado',
+              'alert-class' => 'alert-warning',
+          ]);
     }
 }

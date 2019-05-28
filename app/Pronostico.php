@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pronostico extends Model
 {
     public $timestamps = false;
-    
+
     protected $guarded = ['id'];
 
     /**
@@ -25,6 +25,6 @@ class Pronostico extends Model
      */
     public function partidos()
     {
-        return $this->belongsToMany(Partido::class);
+        return $this->belongsToMany(Partido::class)->withPivot('prediccion', 'acierto');
     }
 }

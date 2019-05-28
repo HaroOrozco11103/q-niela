@@ -14,7 +14,7 @@ class User extends Authenticatable
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     //public $timestamps = false;
-      //protected $table = 'nombre'; //relaciona modelo con esa tabla por si la clase se llama diferente en plural o algo así
+    //protected $table = 'nombre'; //relaciona modelo con esa tabla por si la clase se llama diferente en plural o algo así
     use Notifiable;
 
     /**
@@ -43,6 +43,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Agrupa el nombre, username y correo de un usuario para crear una variable nueva.
+     * @return string
+     */
+    public function getDatosUserAttribute()
+    {
+        return $this->id . ' - ' . $this->nombre . ' - ' . $this->username . ' - ' . $this->email;
+    }
+
+    /**
+     * Guarda el email en minúsculas.
+     * @param string $email
+     * @return void
+     */
+    public function setEmailAttribute($email)
+    {
+        $this->attributes['email'] = strtolower($email);
+    }
 
     /**
      * Establece relación hacia un equipo

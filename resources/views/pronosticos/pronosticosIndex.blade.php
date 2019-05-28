@@ -3,7 +3,8 @@
 @section('content')
 
 <div class="card shadow">
-    <div class="card-header">Pronósticos de la Jornada:
+    <div class="card-header">
+      Pronósticos de la Jornada:
     </div>
     <div class="table-responsive">
         <table class="table table-hover">

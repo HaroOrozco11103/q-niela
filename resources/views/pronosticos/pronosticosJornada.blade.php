@@ -15,7 +15,23 @@
         <table class="table table-hover">
             <thead class="thead-dark">
                 <tr>
-                    //Datos del pronostico
+                  <th scope="col">Jornada</th>
+                  <th scope="col">Aciertos</th>
+                  <th scope="col">Apodo</th>
+                  <th scope="col">Usuario</th>
+                  @foreach($partidos as $parAct)
+                    @if($jornada->id == $parAct->jornada_id)
+                      <th scope="col">
+                        @foreach($equipos as $eqpAct)
+                          {{ $parAct->equipo_local == $eqpAct->id ? "$eqpAct->nombre" : '' }}
+                        @endforeach
+                        <br>
+                        @foreach($equipos as $eqpAct)
+                          {{ $parAct->equipo_visitante == $eqpAct->id ? "$eqpAct->nombre" : '' }}
+                        @endforeach
+                      </th>
+                    @endif
+                  @endforeach
                   @auth
                     @if(\Auth::user()->tipo == "admin")
                       <th scope="col">Opciones</th>
@@ -30,18 +46,36 @@
                 </div>
               @else
                 @foreach($pronosticos as $pro)
-                @if($jornada->id == $pro->jornada_id)
-                <tr>
-                    //Datos partidos
-                  @auth
-                    @if(\Auth::user()->tipo == "admin")
-                    <td>
-                        <a href="{{ route('pronosticos.show', $pro->id) }}" class="btn-outline-info bg-white">Opciones</a>
-                    </td>
-                    @endif
-                  @endauth
-                </tr>
-                @endif
+                  @if($jornada->id == $pro->jornada_id)
+                    <tr>
+                      <td>
+                        @foreach($jornadas as $jorAct)
+                          {{ $pro->jornada_id == $jorAct->id ? "$jorAct->numero" : '' }}
+                        @endforeach
+                      </td>
+                      <td>{{ $pro->totalAciertos }}</td>
+                      <td>{{ $pro->apodo }}</td>
+                      <td>
+                        @foreach($users as $usrAct)
+                          {{ $pro->user_id == $usrAct->id ? "$usrAct->username" : '' }}
+                        @endforeach
+                      </td>
+
+                      @foreach($pro->partidos as $partidoAct)
+                        <th scope="col">
+                          {{ $partidoAct->prediccion }}
+                        </th>
+                      @endforeach
+
+                      @auth
+                        @if(\Auth::user()->tipo == "admin")
+                          <td>
+                              <a href="{{ route('pronosticos.show', $pro->id) }}" class="btn-outline-info bg-white">Opciones</a>
+                          </td>
+                        @endif
+                      @endauth
+                    </tr>
+                  @endif
                 @endforeach
               @endif
             </tbody>
